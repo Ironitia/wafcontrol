@@ -9,8 +9,11 @@ Last validated: 2026-09-02 (Europe/Paris)
 | ISPConfig 1 | `46.28.168.135` | Ubuntu 24.04 | Apache 2.4.58 | `https://ispconfig.w3tel.net:7000/` |
 | ISPConfig 2 | `46.28.168.136` | Ubuntu 24.04 | Apache 2.4.58 | `https://ispconfig2.w3tel.net:7000/` |
 | ISPConfig 3 | `46.28.168.155` | Ubuntu 22.04 | Apache 2.4.52 | `https://ispconfig3.w3tel.net:7000/` |
+| Webserver 9 | `46.28.168.41` | Ubuntu 24.04 | Apache 2.4.58 | `https://webserver9.w3tel.net:7000/` |
 
-The deployed application revision is `5967848088c589b26dcf50fb0d1de35d8bb0db48`.
+ISPConfig 1-3 run application revision `5967848088c589b26dcf50fb0d1de35d8bb0db48`.
+Webserver 9 runs revision `f4091e17edeb4ac70af1819146aa5b0c35dbfdc1`,
+which adds the fleet deployment hardening and documentation.
 Administrative HTTPS access to TCP/7000 is allowed only from `2.136.9.164`.
 This restriction exists both in Apache (`Require ip`) and an nftables input chain.
 
@@ -50,6 +53,10 @@ The enabled services are `wafcontrol`, `wafcontrol-celery-worker`,
 `wafcontrol-celery-beat`, `wafcontrol-backup.timer`, and
 `wafcontrol-firewall`, in addition to Apache, PostgreSQL, Redis, and rsyslog.
 ISPConfig 2 uses Celery worker concurrency 2 because it has 4 GiB RAM.
+Webserver 9 uses ModSecurity 2.9.7 from Ubuntu 24.04 and Celery concurrency 4.
+The rsyslog AppArmor policy snippet is installed there, but AppArmor tooling was
+not installed at deployment time; the dedicated socket and forwarding path were
+validated with the effective unconfined rsyslog service.
 
 ## Ubuntu 22.04 engine exception
 
