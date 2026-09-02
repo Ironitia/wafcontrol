@@ -55,7 +55,7 @@ PGPASSWORD="$DB_PASS" pg_dump \
 
 tar \
   --exclude=.git --exclude=.env --exclude=venv --exclude=.venv \
-  --exclude=staticfiles --exclude=celerybeat-schedule.db \
+  --exclude=staticfiles --exclude=celerybeat-schedule --exclude=celerybeat-schedule.db \
   -czf "$code_file" -C "$(dirname "$APP_ROOT")" "$(basename "$APP_ROOT")"
 
 config_paths=()

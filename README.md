@@ -135,7 +135,9 @@ application-to-policy state auditable alongside the exact ModSecurity content.
 Dashboard sources live in `frontend/static`; collected files are written to
 `staticfiles`. These directories must remain distinct. Nginx should serve
 `/static/` from `/opt/WafControl/staticfiles/`. It is safe to run
-`python manage.py collectstatic --clear --noinput` only with this layout.
+`python manage.py collectstatic --clear --noinput` only with this layout. After
+collection, ensure directories below `staticfiles` are `0755` and files are
+`0644` so the web-server identity can serve them; `.env` must remain `0600`.
 
 
 
@@ -146,7 +148,7 @@ WAFControl also supports YubiKey and cross-platform FIDO2/WebAuthn security keys
 
 For a ready-to-copy French prompt that hands a new-site deployment to another agent, use [DEPLOYMENT_AGENT_PROMPT_FR.md](docs/operations/DEPLOYMENT_AGENT_PROMPT_FR.md).
 
-For a reproducible Nginx, ModSecurity, CRS, PostgreSQL, Celery and MapAttack deployment, use the standalone [deployment runbook](docs/operations/DEPLOYMENT.md). Operators and automation agents should also follow the [agent handoff checklist](docs/operations/AGENT_HANDOFF.md). The [sanitised Ironitia inventory](docs/operations/PRODUCTION_INVENTORY_IRONITIA.md) records the validated Nginx topology. The [ISPConfig inventory](docs/operations/PRODUCTION_INVENTORY_ISPCONFIG248.md) records the Apache deployment, alert migration and rollback controls.
+For a reproducible Nginx, ModSecurity, CRS, PostgreSQL, Celery and MapAttack deployment, use the standalone [deployment runbook](docs/operations/DEPLOYMENT.md). Operators and automation agents should also follow the [agent handoff checklist](docs/operations/AGENT_HANDOFF.md). The [sanitised Ironitia inventory](docs/operations/PRODUCTION_INVENTORY_IRONITIA.md) records the validated Nginx topology. The [ISPConfig 2023 inventory](docs/operations/PRODUCTION_INVENTORY_ISPCONFIG248.md) and [ISPConfig fleet inventory](docs/operations/PRODUCTION_INVENTORY_ISPCONFIG_FLEET.md) record the Apache deployments, alert routing and rollback controls.
 
 
 Render a site-specific, secret-free configuration bundle with `scripts/render_deployment_config.sh`; do not copy Ironitia addresses or exclusions to another site.

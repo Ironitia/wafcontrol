@@ -1,0 +1,3 @@
+# Allow rsyslog to own WAFControl's dedicated local event socket.
+/run/wafcontrol-rsyslog/ r,
+/run/wafcontrol-rsyslog/syslog.sock rw,

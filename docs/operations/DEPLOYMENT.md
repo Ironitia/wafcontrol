@@ -189,6 +189,8 @@ cd /opt/WafControl
 sudo ./venv/bin/python manage.py migrate
 sudo ./venv/bin/python manage.py check --deploy
 sudo ./venv/bin/python manage.py collectstatic --clear --noinput
+sudo find /opt/WafControl/staticfiles -type d -exec chmod 0755 {} +
+sudo find /opt/WafControl/staticfiles -type f -exec chmod 0644 {} +
 sudo ./venv/bin/python manage.py createsuperuser
 ```
 
@@ -320,6 +322,16 @@ Install the rendered rsyslog configuration and create its disk-spool directory:
 
 ```bash
 sudo install -d -o syslog -g adm -m 0700 /var/spool/rsyslog
+sudo install -o root -g root -m 0644 \
+  deploy/tmpfiles/wafcontrol-rsyslog.conf \
+  /etc/tmpfiles.d/wafcontrol-rsyslog.conf
+sudo systemd-tmpfiles --create /etc/tmpfiles.d/wafcontrol-rsyslog.conf
+# Ubuntu 24.04 loads an AppArmor profile for rsyslog. Install this snippet when
+# /etc/apparmor.d/usr.sbin.rsyslogd includes <rsyslog.d>.
+sudo install -o root -g root -m 0644 \
+  deploy/apparmor/rsyslog.d-wafcontrol \
+  /etc/apparmor.d/rsyslog.d/wafcontrol
+sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.rsyslogd
 sudo install -o root -g root -m 0644 \
   /root/wafcontrol-rendered/rsyslog/60-wafcontrol-mapattack.conf \
   /etc/rsyslog.d/60-wafcontrol-mapattack.conf
@@ -474,8 +486,10 @@ editing `.env`.
 **Django deployment-check warnings W004/W008:** these can appear when HSTS and HTTP-to-HTTPS redirection are enforced by Nginx instead of Django. Capture the effective Nginx redirect and HSTS header as evidence; do not simply suppress the warnings. Alternatively configure the Django settings after validating proxy and health-check behaviour.
 
 **Dashboard has no styling:** run `collectstatic --clear --noinput`, confirm
-`STATIC_ROOT=/opt/WafControl/staticfiles`, Nginx alias and directory traversal
-permissions, then request a known asset.
+`STATIC_ROOT=/opt/WafControl/staticfiles`, the Nginx or Apache alias, and directory
+traversal permissions. Directories below `staticfiles` must be at least `0755`
+and files `0644`; keep `.env` at `0600`. Request a known CSS asset and require
+HTTP 200 with `Content-Type: text/css`.
 
 **No WAF events:** confirm ModSecurity is on in the protected server block,
 `SecAuditEngine RelevantOnly`, serial log path/permissions, audit section A,

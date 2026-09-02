@@ -8,7 +8,9 @@ User=@@SERVICE_USER@@
 Group=@@SERVICE_GROUP@@
 WorkingDirectory=@@APP_ROOT@@
 Environment=DJANGO_SETTINGS_MODULE=WafControl.settings
-ExecStart=@@APP_ROOT@@/venv/bin/celery -A WafControl beat --loglevel=INFO
+StateDirectory=wafcontrol
+StateDirectoryMode=0770
+ExecStart=@@APP_ROOT@@/venv/bin/celery -A WafControl beat --loglevel=INFO --schedule=/var/lib/wafcontrol/celerybeat-schedule
 Restart=on-failure
 RestartSec=3
 PrivateTmp=true
