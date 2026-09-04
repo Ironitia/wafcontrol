@@ -402,12 +402,12 @@ class PolicyRevision(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     approved_at = models.DateTimeField(null=True, blank=True)
     deployed_at = models.DateTimeField(null=True, blank=True)
-    config_revision = models.OneToOneField(
+    config_revision = models.ForeignKey(
         "ConfigRevision",
         null=True,
         blank=True,
         on_delete=models.PROTECT,
-        related_name="policy_revision",
+        related_name="policy_revisions",
     )
     deployment_error = models.CharField(max_length=1000, blank=True)
 

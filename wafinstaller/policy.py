@@ -1,5 +1,6 @@
 import fcntl
 import os
+import re
 import stat
 import subprocess
 import tempfile
@@ -20,6 +21,7 @@ from wafinstaller.models import (
 
 BEFORE_FILENAME = "REQUEST-890-WAFCONTROL-BEFORE.conf"
 AFTER_FILENAME = "RESPONSE-990-WAFCONTROL-AFTER.conf"
+APACHE_SECURITY2_CONF = Path("/etc/apache2/mods-enabled/security2.conf")
 
 
 class PolicyDeploymentError(RuntimeError):
@@ -106,12 +108,13 @@ def _scope_conditions(exclusion: RuleExclusion) -> list[tuple[str, str]]:
     if exclusion.host:
         conditions.append(("REQUEST_HEADERS:Host", f"@streq {exclusion.host.lower()}"))
     if exclusion.path:
-        operator = (
-            "@streq"
-            if exclusion.path_match == RuleExclusion.PathMatch.EXACT
-            else "@beginsWith"
-        )
-        conditions.append(("REQUEST_URI", f"{operator} {exclusion.path}"))
+        if exclusion.path_match == RuleExclusion.PathMatch.EXACT:
+            escaped_path = re.escape(exclusion.path)
+            conditions.append(
+                ("REQUEST_URI", f"@rx ^{escaped_path}(?:\\?|$)")
+            )
+        else:
+            conditions.append(("REQUEST_URI", f"@beginsWith {exclusion.path}"))
     if exclusion.method:
         conditions.append(("REQUEST_METHOD", f"@streq {exclusion.method}"))
     return conditions
@@ -123,9 +126,12 @@ def _render_scoped_exclusion(exclusion: RuleExclusion) -> list[str]:
     if generated_id > 1_799_999:
         raise PolicyDeploymentError("Rule-exclusion identifier range is exhausted.")
 
-    action = f"id:{generated_id},phase:1,pass,nolog,{_exclusion_action(exclusion)}"
+    exclusion_action = _exclusion_action(exclusion)
+    action = f"id:{generated_id},phase:1,pass,nolog"
     if len(conditions) > 1:
         action += ",chain"
+    else:
+        action += f",{exclusion_action}"
 
     variable, operator = conditions[0]
     lines = [
@@ -133,7 +139,10 @@ def _render_scoped_exclusion(exclusion: RuleExclusion) -> list[str]:
         f'SecRule {variable} "{operator}" "{action}"\n',
     ]
     for index, (variable, operator) in enumerate(conditions[1:], start=1):
-        chained_action = "chain" if index < len(conditions) - 1 else "t:none"
+        if index < len(conditions) - 1:
+            chained_action = "chain"
+        else:
+            chained_action = f"t:none,{exclusion_action}"
         lines.append(f'    SecRule {variable} "{operator}" "{chained_action}"\n')
     lines.append("\n")
     return lines
@@ -276,9 +285,14 @@ def include_directives(base_dir: Path | None = None) -> tuple[str, str]:
 
 
 def include_status(base_dir: Path | None = None) -> bool:
-    main_conf = Path(get_paths().modsec_conf).with_name("main.conf")
+    paths = get_paths()
+    include_conf = (
+        APACHE_SECURITY2_CONF
+        if paths.name == "apache"
+        else Path(paths.modsec_conf).with_name("main.conf")
+    )
     try:
-        content = main_conf.read_text(encoding="utf-8")
+        content = include_conf.read_text(encoding="utf-8")
     except (OSError, UnicodeError):
         return False
     return all(directive in content for directive in include_directives(base_dir))

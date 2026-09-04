@@ -35,8 +35,10 @@ APACHE_PATHS = Paths(
 )
 
 def _run_basic_script():
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    script = os.path.join(base_dir, "../../scripts", "basic.sh")
+    project_dir = os.path.dirname(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    )
+    script = os.path.join(project_dir, "scripts", "basic.sh")
     try:
         out = subprocess.check_output(["/bin/bash", script], text=True, stderr=subprocess.STDOUT)
         return json.loads(out)

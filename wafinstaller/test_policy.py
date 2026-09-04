@@ -36,6 +36,7 @@ from wafinstaller.policy import (
     PolicyDeploymentError,
     deploy_policy_bundle,
     effective_policy_snapshot,
+    include_status,
     render_policy,
 )
 from wafinstaller.security_events import emit_attack_syslog, format_attack_syslog
@@ -155,9 +156,12 @@ class ManagedPolicyRenderingTests(TestCase):
 
         self.assertIn("REQUEST_HEADERS:Host", bundle.before)
         self.assertIn("@streq ironitia.com", bundle.before)
-        self.assertIn('REQUEST_URI "@streq /api/contact" "chain"', bundle.before)
-        self.assertIn("REQUEST_METHOD", bundle.before)
-        self.assertIn("ctl:ruleRemoveTargetById=942100;ARGS:description", bundle.before)
+        self.assertIn('REQUEST_URI "@rx ^/api/contact(?:\\?|$)" "chain"', bundle.before)
+        self.assertNotIn("pass,nolog,ctl:", bundle.before)
+        self.assertIn(
+            'SecRule REQUEST_METHOD "@streq POST" "t:none,ctl:ruleRemoveTargetById=942100;ARGS:description"',
+            bundle.before,
+        )
         self.assertNotIn(str(exclusion.rule_id), bundle.after)
 
     def test_renders_global_static_exclusion_after_crs_and_ignores_expired(self):
@@ -194,6 +198,24 @@ class ManagedPolicyDeploymentTests(SimpleTestCase):
             active_address_entries=0,
             warnings=(),
         )
+
+    @patch("wafinstaller.policy.get_paths")
+    def test_include_status_reads_enabled_apache_security_module(self, get_paths):
+        with TemporaryDirectory() as directory:
+            base = Path(directory, "wafcontrol")
+            base.mkdir()
+            security2_conf = Path(directory, "security2.conf")
+            security2_conf.write_text(
+                f"Include {base / BEFORE_FILENAME}\n"
+                "Include /etc/modsecurity/crs/rules/*.conf\n"
+                f"Include {base / AFTER_FILENAME}\n"
+            )
+            get_paths.return_value = SimpleNamespace(
+                name="apache", modsec_conf="/etc/modsecurity/modsecurity.conf"
+            )
+
+            with patch("wafinstaller.policy.APACHE_SECURITY2_CONF", security2_conf):
+                self.assertTrue(include_status(base))
 
     @patch("wafinstaller.policy.subprocess.run")
     def test_deploys_both_files_then_validates_and_reloads(self, run):
@@ -555,13 +577,25 @@ class PolicyLot3BTests(TestCase):
             expires_at=timezone.now() - timezone.timedelta(minutes=1),
         )
 
-        result = expire_managed_policy_objects()
+        paths = SimpleNamespace(
+            test_cmd=["apache2ctl", "configtest"],
+            reload_cmd=["systemctl", "reload", "apache2"],
+        )
+        with (
+            patch("wafinstaller.policy.include_status", return_value=True),
+            patch(
+                "wafinstaller.policy.deploy_policy_bundle", return_value=True
+            ) as deploy,
+            patch("wafinstaller.helper.adapters.get_paths", return_value=paths),
+        ):
+            result = expire_managed_policy_objects()
 
         entry.refresh_from_db()
         exclusion.refresh_from_db()
         self.assertFalse(entry.enabled)
         self.assertFalse(exclusion.enabled)
         self.assertEqual(result, {"address_entries": 1, "rule_exclusions": 1})
+        deploy.assert_called_once()
         self.assertTrue(AuditEntry.objects.filter(action="policy.expiry.run").exists())
 
 
@@ -742,6 +776,34 @@ class ApplicationPolicyMilestoneTests(TestCase):
         self.assertEqual(
             revision.summary["config_checksum"],
             revision.config_revision.checksum,
+        )
+
+    def test_new_render_can_reuse_frozen_configuration_snapshot(self):
+        self._binding()
+        self.client.force_login(self.user)
+
+        self.client.post(reverse("wafinstaller:policy_revision_create"))
+        first = PolicyRevision.objects.get()
+        changed_bundle = PolicyBundle(
+            before=first.before_content + "# Renderer update\n",
+            after=first.after_content,
+            active_exclusions=0,
+            active_address_entries=0,
+            warnings=(),
+        )
+
+        with patch("wafinstaller.policy_views.render_policy", return_value=changed_bundle):
+            response = self.client.post(reverse("wafinstaller:policy_revision_create"))
+
+        self.assertRedirects(
+            response,
+            reverse("wafinstaller:policy_management"),
+        )
+        revisions = list(PolicyRevision.objects.order_by("id"))
+        self.assertEqual(len(revisions), 2)
+        self.assertEqual(ConfigRevision.objects.count(), 1)
+        self.assertEqual(
+            revisions[0].config_revision_id, revisions[1].config_revision_id
         )
 
     @patch("wafinstaller.policy_views.include_status", return_value=False)

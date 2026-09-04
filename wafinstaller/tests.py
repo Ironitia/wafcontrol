@@ -10,7 +10,7 @@ from django.test import Client, SimpleTestCase, TestCase
 from django.urls import reverse
 from django.utils import timezone
 
-from wafinstaller.helper.adapters import detect_crs_version
+from wafinstaller.helper.adapters import _run_basic_script, detect_crs_version
 from wafinstaller.helper.helpers import (
     compare_crs_versions,
     get_crs_version_status,
@@ -29,6 +29,19 @@ from wafinstaller.security import (
 
 
 class CrsVersionHelperTests(SimpleTestCase):
+    @patch("wafinstaller.helper.adapters.subprocess.check_output")
+    def test_basic_script_is_loaded_from_project_scripts_directory(self, check_output):
+        check_output.return_value = '{"server": "apache", "waf": {"version": "4.29.0"}}'
+
+        self.assertEqual(_run_basic_script()["server"], "apache")
+
+        script = Path(__file__).resolve().parents[1] / "scripts" / "basic.sh"
+        check_output.assert_called_once_with(
+            ["/bin/bash", str(script)],
+            text=True,
+            stderr=subprocess.STDOUT,
+        )
+
     def test_normalizes_version_prefix(self):
         self.assertEqual(normalize_version("v4.28.0"), "4.28.0")
         self.assertEqual(normalize_version("V4.28.0"), "4.28.0")
