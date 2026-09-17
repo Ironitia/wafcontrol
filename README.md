@@ -11,7 +11,7 @@
 ## About the Ironitia fork
 
 - **Maintainer:** [Ironitia OÜ](https://ironitia.com/)
-- **Fork:** [amassi-network/wafcontrol](https://github.com/amassi-network/wafcontrol)
+- **Fork:** [Ironitia/wafcontrol](https://github.com/Ironitia/wafcontrol)
 - **Upstream:** [wafcontrol/wafcontrol](https://github.com/wafcontrol/wafcontrol)
 - **License:** Apache License 2.0, preserving the upstream attribution
 
@@ -285,7 +285,7 @@ The generic template `deploy/rsyslog-wafcontrol-mapattack.conf.template` forward
 - [OWASP WAFControl Project Site](https://wafcontrol.org/)
 - [OWASP WAFControl Project Page](https://owasp.org/www-project-wafcontrol/)
 - [Original OWASP WAFControl repository](https://github.com/wafcontrol/wafcontrol)
-- [Ironitia WAFControl fork](https://github.com/amassi-network/wafcontrol)
+- [Ironitia WAFControl fork](https://github.com/Ironitia/wafcontrol)
 
 ## Documentation
 - [OWASP WAFControl Docs](https://wafcontrol.org/docs)
@@ -301,7 +301,7 @@ You can help us by:
 - Suggesting new features and improvements.  
 - Contributing code, documentation, or testing.  
 
-- [Open an issue on the Ironitia fork](https://github.com/amassi-network/wafcontrol/issues)
+- [Open an issue on the Ironitia fork](https://github.com/Ironitia/wafcontrol/issues)
   for behaviour specific to this repository.
 - [Open an upstream issue](https://github.com/wafcontrol/wafcontrol/issues) when
   the issue also affects the original project.

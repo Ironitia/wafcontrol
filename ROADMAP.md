@@ -1,6 +1,6 @@
 # WAFControl Evolution Roadmap
 
-- Status: proposal maintained by the `amassi-network/wafcontrol` fork
+- Status: proposal maintained by the `Ironitia/wafcontrol` fork
 - Last updated: 9 August 2026
 - Reference environment: Nginx, ModSecurity v3, and OWASP Core Rule Set 4.x
 

@@ -60,8 +60,8 @@ OBSERVATION_END_DATE=[TO BE COMPLETED]
 Dépôt obligatoire :
 
 ```text
-REPOSITORY=git@github.com:amassi-network/wafcontrol.git
-BRANCH=agent/managed-exclusions-address-lists
+REPOSITORY=git@github.com:Ironitia/wafcontrol.git
+BRANCH=main
 REFERENCE_VALIDATED_COMMIT=17661c8
 DEPLOY_COMMIT=[TO BE COMPLETED]
 ```
@@ -81,7 +81,7 @@ revu, puis enregistre le hash complet retenu.
      `/home/xave/W3TEL Dropbox/Xavier Lemaire/www_ironitia_com/wafcontrol-fork`,
      mais ne suppose pas qu’il existe sur un autre poste.
 2. Vérifie que le remote correspond à
-   `amassi-network/wafcontrol.git`, et non au dépôt upstream OWASP.
+   `Ironitia/wafcontrol.git`, et non au dépôt upstream OWASP.
 3. Si aucun clone n’existe, clone notre fork dans un nouveau répertoire propre.
 4. Place-toi sur le commit exact retenu, en mode détaché ou sur une branche de
    déploiement dédiée.
