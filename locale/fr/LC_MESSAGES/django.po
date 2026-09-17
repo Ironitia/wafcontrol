@@ -679,3 +679,132 @@ msgstr "Affichage de %(filtered_count)s attaques sur %(total_attacks)s."
 
 msgid "Time"
 msgstr "Heure"
+
+msgid "CRS rules"
+msgstr "Règles CRS"
+
+msgid "ModSecurity CRS rule files"
+msgstr "Fichiers de règles ModSecurity CRS"
+
+msgid "Filename"
+msgstr "Nom du fichier"
+
+msgid "Rule file content"
+msgstr "Contenu du fichier de règles"
+
+msgid "Loading…"
+msgstr "Chargement…"
+
+msgid "Save changes"
+msgstr "Enregistrer les modifications"
+
+msgid "Add a custom ModSecurity rule (CRS style)"
+msgstr "Ajouter une règle ModSecurity personnalisée (style CRS)"
+
+msgid "Back"
+msgstr "Retour"
+
+msgid "Phase"
+msgstr "Phase"
+
+msgid "Severity"
+msgstr "Sévérité"
+
+msgid "Variable"
+msgstr "Variable"
+
+msgid "Operator"
+msgstr "Opérateur"
+
+msgid "Transformations (t:)"
+msgstr "Transformations (t:)"
+
+msgid "Tags (comma-separated)"
+msgstr "Étiquettes (séparées par des virgules)"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Capture"
+msgstr "Capture"
+
+msgid "Save rule"
+msgstr "Enregistrer la règle"
+
+msgid "Add new rule"
+msgstr "Ajouter une règle"
+
+msgid "No custom rules defined."
+msgstr "Aucune règle personnalisée n’est définie."
+
+msgid "Active server:"
+msgstr "Serveur actif :"
+
+msgid "CRS is up to date."
+msgstr "CRS est à jour."
+
+msgid "WAF is not installed."
+msgstr "Le WAF n’est pas installé."
+
+msgid "Load average"
+msgstr "Charge moyenne"
+
+msgid "Usage"
+msgstr "Utilisation"
+
+msgid "Services"
+msgstr "Services"
+
+msgid "Storage usage"
+msgstr "Utilisation du stockage"
+
+msgid "Free space"
+msgstr "Espace libre"
+
+msgid "Recent WAF attacks"
+msgstr "Attaques WAF récentes"
+
+msgid "No recent WAF attacks."
+msgstr "Aucune attaque WAF récente."
+
+msgid "CRS versions"
+msgstr "Versions de CRS"
+
+msgid "Available CRS versions"
+msgstr "Versions de CRS disponibles"
+
+msgid "Installed version:"
+msgstr "Version installée :"
+
+msgid "Latest version:"
+msgstr "Dernière version :"
+
+msgid "Last fetched:"
+msgstr "Dernière actualisation :"
+
+msgid "The active CRS version is newer than the local release catalog. Refresh the catalog; do not downgrade unless explicitly intended."
+msgstr "La version CRS active est plus récente que le catalogue local. Actualisez le catalogue ; ne revenez pas à une version antérieure sauf intention explicite."
+
+msgid "The active or latest CRS version could not be determined."
+msgstr "La version CRS active ou la plus récente n’a pas pu être déterminée."
+
+msgid "CRS versions are automatically checked every <strong>12 hours</strong>. Use the button below to fetch the latest catalog now."
+msgstr "Les versions CRS sont vérifiées automatiquement toutes les <strong>12 heures</strong>. Utilisez le bouton ci-dessous pour actualiser le catalogue maintenant."
+
+msgid "Refresh CRS version catalog"
+msgstr "Actualiser le catalogue des versions CRS"
+
+msgid "Published"
+msgstr "Publiée"
+
+msgid "Reinstall"
+msgstr "Réinstaller"
+
+msgid "Switch"
+msgstr "Activer"
+
+msgid "No versions available."
+msgstr "Aucune version disponible."
+
+msgid "Back to dashboard"
+msgstr "Retour au tableau de bord"

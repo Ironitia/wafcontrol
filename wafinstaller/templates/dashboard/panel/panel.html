@@ -1,5 +1,5 @@
 {% extends 'dashboard/main/main.html' %}
-{% load static %}
+{% load i18n static %}
 {% block content %}
     <!-- Page Content  -->
     <div id="content-page" class="content-page">
@@ -19,7 +19,7 @@
                             </p>
 
                             <!-- نمایش وب‌سرور فعال -->
-                            <p class="mt-2"><strong>Active Server:</strong>
+                            <p class="mt-2"><strong>{% translate "Active server:" %}</strong>
                                 <span class="badge badge-info">{{ active_server|default:"none"|title }}</span>
                             </p>
 
@@ -51,10 +51,10 @@
                                         configuration.
                                     </div>
                                 {% else %}
-                                    <div class="alert alert-primary">CRS is up to date.</div>
+                                    <div class="alert alert-primary">{% translate "CRS is up to date." %}</div>
                                 {% endif %}
                             {% else %}
-                                <p class="text-danger">WAF is not installed.</p>
+                                <p class="text-danger">{% translate "WAF is not installed." %}</p>
 {#                                <form method="post" action="{% url 'wafinstaller:install_waf_page' %}">#}
 {#                                    {% csrf_token %}#}
 {#                                    <button type="submit" class="btn btn-primary">Install WAF</button>#}
@@ -171,7 +171,7 @@
                                     <i class="ri-cpu-line"></i>
                                 </div>
                                 <div class="mt-4">
-                                    <h5 class="text-black text-uppercase">Load Average </h5>
+                                    <h5 class="text-black text-uppercase">{% translate "Load average" %}</h5>
                                     <h3 class="d-flex text-primary">{{ cpu_load }}%<i class="ri-arrow-up-line"></i></h3>
                                 </div>
                                 <p class="mb-0 mt-1">Load {{ cpu_load }}</p>
@@ -197,7 +197,7 @@
                                     <h3 class="d-flex text-danger">{{ ram_usage }}%<i class="ri-arrow-down-line"></i>
                                     </h3>
                                 </div>
-                                <p class="mb-0 mt-1">Usage</p>
+                                <p class="mb-0 mt-1">{% translate "Usage" %}</p>
                                 <div class="mt-3">
                                     <div class="iq-progress-bar-linear d-inline-block mt-1 w-100">
                                         <div class="iq-progress-bar">
@@ -239,7 +239,7 @@
                                     <i class="ri-global-line"></i>
                                 </div>
                                 <div class="mt-4">
-                                    <h5 class="text-black text-uppercase">SERVICES</h5>
+                                    <h5 class="text-black text-uppercase">{% translate "Services" %}</h5>
                                     <h3 class="d-flex text-danger">{{ total_processes }}</h3>
                                 </div>
                                 <p class="mb-0 mt-1">Handles: {{ total_handles }}</p>
@@ -274,11 +274,11 @@
                                             <div class="h4 mb-0">{{ disk_usage }}</div>
                                         </div>
                                     </div>
-                                    <h5 class="d-block mt-2 text-white font-weight-500">Storage<br> Usage</h5>
+                                    <h5 class="d-block mt-2 text-white font-weight-500">{% translate "Storage usage" %}</h5>
                                 </div>
                                 <div class="col-5 pr-0 right-border-block position-relative">
                                     <h5 class="text-white mt-2">{{ storage_free }}</h5>
-                                    <span class="text-white">Free Space</span>
+                                    <span class="text-white">{% translate "Free space" %}</span>
                                 </div>
                             </div>
                         </div>
@@ -328,7 +328,7 @@
                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                         <div class="iq-card-header d-flex justify-content-between">
                             <div class="iq-header-title">
-                                <h4 class="card-title">Recent WAF Attacks</h4>
+                                <h4 class="card-title">{% translate "Recent WAF attacks" %}</h4>
                             </div>
                             <div class="iq-card-header-toolbar d-flex align-items-center">
                                 <div class="dropdown">
@@ -351,11 +351,11 @@
                                     <thead>
                                     <tr>
                                         <th>IP</th>
-                                        <th>Time</th>
-                                        <th>Message</th>
-                                        <th>Status</th>
-                                        <th>Country</th>
-                                        <th>Rule ID</th>
+                                        <th>{% translate "Time" %}</th>
+                                        <th>{% translate "Message" %}</th>
+                                        <th>{% translate "Status" %}</th>
+                                        <th>{% translate "Country" %}</th>
+                                        <th>{% translate "Rule ID" %}</th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -367,9 +367,9 @@
                                             <td title="{{ attack.message }}">{{ attack.message|truncatechars:50 }}</td>
                                             <td>
                                                 {% if attack.status == "Blocked" %}
-                                                    <span class="badge badge-danger">Blocked</span>
+                                                    <span class="badge badge-danger">{% translate "Blocked" %}</span>
                                                 {% else %}
-                                                    <span class="badge badge-warning">Detected</span>
+                                                    <span class="badge badge-warning">{% translate "Detected" %}</span>
                                                 {% endif %}
                                             </td>
                                             <td>
@@ -385,7 +385,7 @@
                                         </tr>
                                     {% empty %}
                                         <tr>
-                                            <td colspan="7" class="text-center text-muted">No recent WAF attacks.</td>
+                                            <td colspan="7" class="text-center text-muted">{% translate "No recent WAF attacks." %}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>

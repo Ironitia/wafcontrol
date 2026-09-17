@@ -1,7 +1,8 @@
 {% extends 'dashboard/main/main.html' %}
+{% load i18n %}
 
 {% block content %}
-    {% block title %}Rule Manage - Owasp Wafcontrol{% endblock %}
+    {% block title %}{% translate "CRS rules" %} - OWASP WAFControl{% endblock %}
 
     <div id="content-page" class="content-page">
         <div class="container-fluid">
@@ -10,7 +11,7 @@
                     <div class="iq-card">
                         <div class="iq-card-header d-flex justify-content-between">
                             <div class="iq-header-title">
-                                <h4 class="card-title">ModSecurity CRS Rule Files - Version {{ crs_version }}</h4>
+                                <h4 class="card-title">{% translate "ModSecurity CRS rule files" %} — {{ crs_version }}</h4>
                             </div>
                         </div>
                         <div class="iq-card-body">
@@ -20,8 +21,8 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Filename</th>
-                                            <th>Actions</th>
+                                            <th>{% translate "Filename" %}</th>
+                                            <th>{% translate "Actions" %}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -32,11 +33,11 @@
                                                 <td>
                                                     <button type="button" class="btn btn-sm btn-primary"
                                                             onclick="loadRuleContent('{{ file }}', false)"
-                                                            data-toggle="modal" data-target=".bd-example-modal-xl">View
+                                                            data-toggle="modal" data-target=".bd-example-modal-xl">{% translate "View" %}
                                                     </button>
                                                     <button type="button" class="btn btn-sm btn-secondary"
                                                             onclick="loadRuleContent('{{ file }}', true)"
-                                                            data-toggle="modal" data-target=".bd-example-modal-xl">Edit
+                                                            data-toggle="modal" data-target=".bd-example-modal-xl">{% translate "Edit" %}
                                                     </button>
                                                 </td>
 
@@ -46,14 +47,14 @@
                                         <tfoot>
                                         <tr>
                                             <th>#</th>
-                                            <th>Filename</th>
-                                            <th>Actions</th>
+                                            <th>{% translate "Filename" %}</th>
+                                            <th>{% translate "Actions" %}</th>
                                         </tr>
                                         </tfoot>
                                     </table>
                                 </div>
                             {% else %}
-                                <p class="text-muted">No rule files found.</p>
+                                <p class="text-muted">{% translate "No rule files found." %}</p>
                             {% endif %}
                         </div>
                     </div>
@@ -67,7 +68,7 @@
         <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="ruleModalLabel">Rule File Content</h5>
+                    <h5 class="modal-title" id="ruleModalLabel">{% translate "Rule file content" %}</h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span>&times;</span>
                     </button>
@@ -75,12 +76,12 @@
                 <div class="modal-body">
                     <div id="view-mode" style="display: none;">
                         <pre id="ruleContent" class="bg-dark text-white p-3 rounded"
-                             style="max-height: 70vh; overflow-y: auto;">Loading...</pre>
+                             style="max-height: 70vh; overflow-y: auto;">{% translate "Loading…" %}</pre>
                     </div>
                     <div id="edit-mode" style="display: none;">
                         <textarea id="ruleTextarea" class="form-control"
                                   style="height: 60vh; font-family: monospace;"></textarea>
-                        <button class="btn btn-success mt-3" onclick="saveEditedRule()">Save Changes</button>
+                        <button class="btn btn-success mt-3" onclick="saveEditedRule()">{% translate "Save changes" %}</button>
                     </div>
                 </div>
 
