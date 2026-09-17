@@ -1,4 +1,5 @@
 import fcntl
+import ipaddress
 import os
 import re
 import stat
@@ -105,6 +106,9 @@ def _exclusion_action(exclusion: RuleExclusion) -> str:
 
 def _scope_conditions(exclusion: RuleExclusion) -> list[tuple[str, str]]:
     conditions: list[tuple[str, str]] = []
+    if exclusion.source_ip:
+        source_ip = str(ipaddress.ip_address(exclusion.source_ip))
+        conditions.append(("REMOTE_ADDR", f"@streq {source_ip}"))
     if exclusion.host:
         conditions.append(("REQUEST_HEADERS:Host", f"@streq {exclusion.host.lower()}"))
     if exclusion.path:
@@ -128,6 +132,8 @@ def _render_scoped_exclusion(exclusion: RuleExclusion) -> list[str]:
 
     exclusion_action = _exclusion_action(exclusion)
     action = f"id:{generated_id},phase:1,pass,nolog"
+    if exclusion.source_ip:
+        action += ",t:none"
     if len(conditions) > 1:
         action += ",chain"
     else:

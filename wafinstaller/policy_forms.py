@@ -98,6 +98,7 @@ class RuleExclusionForm(StyledModelForm):
             "rule_id",
             "target",
             "host",
+            "source_ip",
             "rule_tag",
             "path",
             "path_match",

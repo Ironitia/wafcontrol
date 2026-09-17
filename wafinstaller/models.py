@@ -246,6 +246,7 @@ class RuleExclusion(models.Model):
         help_text="For example ARGS:description. Required for target exclusions.",
     )
     host = models.CharField(max_length=253, blank=True)
+    source_ip = models.GenericIPAddressField(null=True, blank=True)
     path = models.CharField(max_length=2048, blank=True)
     path_match = models.CharField(
         max_length=12, choices=PathMatch.choices, default=PathMatch.PREFIX

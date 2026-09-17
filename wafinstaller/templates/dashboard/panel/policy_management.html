@@ -233,7 +233,7 @@
                 {% if not exclusion.enabled %}<span class="badge badge-secondary">{% translate "Disabled" %}</span>{% endif %}
               </td>
               <td>{% if exclusion.rule_id %}<code>ID {{ exclusion.rule_id }}</code>{% else %}<code>Tag {{ exclusion.rule_tag }}</code>{% endif %}{% if exclusion.target %} / <code>{{ exclusion.target }}</code>{% endif %}</td>
-              <td>{{ exclusion.host|default:"all hosts" }} · {{ exclusion.method|default:"all methods" }} · {{ exclusion.path|default:"all paths" }}</td>
+              <td>Source: <code>{{ exclusion.source_ip|default:"all sources" }}</code><br>{{ exclusion.host|default:"all hosts" }} · {{ exclusion.method|default:"all methods" }} · {{ exclusion.path|default:"all paths" }}</td>
               <td>{% if exclusion.impact_count == None %}Not available for tags{% else %}{{ exclusion.impact_count.total }} total / {{ exclusion.impact_count.suspicious }} suspicious{% endif %}</td>
               <td><strong>{{ exclusion.owner }}</strong><br>{{ exclusion.rationale }}</td>
               <td>{{ exclusion.expires_at|default:"No expiry" }}</td>

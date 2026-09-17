@@ -91,6 +91,8 @@ class PolicyManagementView(LoginRequiredMixin, TemplateView):
         if not exclusion.rule_id:
             return None
         events = Attack.objects.filter(rule_id=str(exclusion.rule_id))
+        if exclusion.source_ip:
+            events = events.filter(ip=exclusion.source_ip)
         if exclusion.host:
             events = events.filter(host__iexact=exclusion.host)
         if exclusion.path:
