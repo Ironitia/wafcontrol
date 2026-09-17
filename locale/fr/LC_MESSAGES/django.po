@@ -79,8 +79,14 @@ msgstr "Modifier vos informations personnelles."
 msgid "Sign out"
 msgstr "Se déconnecter"
 
-msgid "OWASP WAFControl (v1.0.0). Built on the OWASP CRS project. Thanks to the CRS community."
-msgstr "OWASP WAFControl (v1.0.0). Construit sur le projet OWASP CRS. Merci à la communauté CRS."
+msgid "Original OWASP WAFControl project"
+msgstr "Projet OWASP WAFControl d’origine"
+
+msgid "Ironitia fork on GitHub"
+msgstr "Fork Ironitia sur GitHub"
+
+msgid "This version is a fork maintained by Ironitia OÜ, based on the original OWASP WAFControl project and OWASP CRS. Thanks to their communities."
+msgstr "Cette version est un fork maintenu par Ironitia OÜ, basé sur le projet OWASP WAFControl d’origine et OWASP CRS. Merci à leurs communautés."
 
 msgid "Sign in"
 msgstr "Se connecter"
