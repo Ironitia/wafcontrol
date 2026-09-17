@@ -1,19 +1,20 @@
 {% extends 'dashboard/main/main.html' %}
+{% load i18n %}
 {% block content %}
     <div class="container">
-        <h3 class="text-primary">🔒 Server Traffic Overview</h3>
+        <h3 class="text-primary">🔒 {% translate "Server traffic overview" %}</h3>
 
         <div class="row mt-3">
             <div class="col-md-4">
                 <div class="card p-3 shadow">
-                    <h5>Total Connections</h5>
+                    <h5>{% translate "Total connections" %}</h5>
                     <p class="text-success display-5">{{ connection_count }}</p>
                 </div>
             </div>
 
             <div class="col-md-8">
                 <div class="card p-3 shadow">
-                    <h5>Top 20 IPs with Most Connections</h5>
+                    <h5>{% translate "Top 20 IPs with most connections" %}</h5>
                     <ul class="list-group">
                         {% for item in top_ips %}
                             <li class="list-group-item d-flex justify-content-between">
@@ -21,7 +22,7 @@
                                 <span class="badge bg-primary">{{ item.count }}</span>
                             </li>
                         {% empty %}
-                            <li class="list-group-item">No Data</li>
+                            <li class="list-group-item">{% translate "No data" %}</li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -29,7 +30,7 @@
         </div>
 
         <div class="card mt-4 p-3 shadow">
-            <h5>SYN_RECV Connections (Potential DDoS)</h5>
+            <h5>{% translate "SYN_RECV connections (potential DDoS)" %}</h5>
             <ul class="list-group">
                 {% for item in syn_recv_ips %}
                     <li class="list-group-item d-flex justify-content-between">
@@ -37,13 +38,13 @@
                         <span class="badge bg-danger">{{ item.count }}</span>
                     </li>
                 {% empty %}
-                    <li class="list-group-item">No suspicious activity</li>
+                    <li class="list-group-item">{% translate "No suspicious activity" %}</li>
                 {% endfor %}
             </ul>
         </div>
 
         <div class="card mt-4 p-3 shadow">
-            <h5>Connection States</h5>
+            <h5>{% translate "Connection states" %}</h5>
             <ul class="list-group">
                 {% for item in states %}
                     <li class="list-group-item d-flex justify-content-between">

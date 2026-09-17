@@ -1,0 +1,681 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WAFControl\n"
+"PO-Revision-Date: 2026-09-17 00:00+0200\n"
+"Last-Translator: Ironitia OÜ\n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Language"
+msgstr "Langue"
+
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+msgid "Attack Control"
+msgstr "Gestion des attaques"
+
+msgid "All attacks"
+msgstr "Toutes les attaques"
+
+msgid "Critical attacks"
+msgstr "Attaques critiques"
+
+msgid "Top attackers"
+msgstr "Principaux attaquants"
+
+msgid "Rule Management"
+msgstr "Gestion des règles"
+
+msgid "Rules"
+msgstr "Règles"
+
+msgid "Rules viewer"
+msgstr "Explorateur de règles"
+
+msgid "CRS Control"
+msgstr "Gestion du CRS"
+
+msgid "Version switcher"
+msgstr "Sélecteur de version"
+
+msgid "CRS settings"
+msgstr "Paramètres CRS"
+
+msgid "Custom rules"
+msgstr "Règles personnalisées"
+
+msgid "Managed policies"
+msgstr "Politiques gérées"
+
+msgid "WAFControl settings"
+msgstr "Paramètres WAFControl"
+
+msgid "Administrator settings"
+msgstr "Paramètres administrateur"
+
+msgid "Hello %(name)s,"
+msgstr "Bonjour %(name)s,"
+
+msgid "Hello %(name)s"
+msgstr "Bonjour %(name)s"
+
+msgid "welcome back."
+msgstr "heureux de vous revoir."
+
+msgid "Welcome"
+msgstr "Bienvenue"
+
+msgid "View personal profile details."
+msgstr "Consulter les informations du profil."
+
+msgid "Modify your personal details."
+msgstr "Modifier vos informations personnelles."
+
+msgid "Sign out"
+msgstr "Se déconnecter"
+
+msgid "OWASP WAFControl (v1.0.0). Built on the OWASP CRS project. Thanks to the CRS community."
+msgstr "OWASP WAFControl (v1.0.0). Construit sur le projet OWASP CRS. Merci à la communauté CRS."
+
+msgid "Sign in"
+msgstr "Se connecter"
+
+msgid "Enter your username and password to access WAFControl."
+msgstr "Saisissez votre identifiant et votre mot de passe pour accéder à WAFControl."
+
+msgid "Username"
+msgstr "Identifiant"
+
+msgid "Password"
+msgstr "Mot de passe"
+
+msgid "Sign in with your personal account to access the administration panel."
+msgstr "Connectez-vous avec votre compte personnel pour accéder au panneau d’administration."
+
+msgid "This project uses the OWASP Core Rule Set. Thanks to the CRS maintainers."
+msgstr "Ce projet utilise OWASP Core Rule Set. Merci aux mainteneurs du CRS."
+
+msgid "Two-factor verification"
+msgstr "Vérification à deux facteurs"
+
+msgid "Use your registered YubiKey or security key."
+msgstr "Utilisez votre YubiKey ou votre clé de sécurité enregistrée."
+
+msgid "Use security key"
+msgstr "Utiliser la clé de sécurité"
+
+msgid "Or use your authenticator app"
+msgstr "Ou utiliser votre application d’authentification"
+
+msgid "Authentication code"
+msgstr "Code d’authentification"
+
+msgid "For example: 123456"
+msgstr "Par exemple : 123456"
+
+msgid "Verify code"
+msgstr "Vérifier le code"
+
+msgid "Protected administrative access"
+msgstr "Accès administratif protégé"
+
+msgid "Register an application"
+msgstr "Enregistrer une application"
+
+msgid "One exact hostname identifies the protected application."
+msgstr "Un nom d’hôte exact identifie l’application protégée."
+
+msgid "Create application"
+msgstr "Créer l’application"
+
+msgid "Define a reusable policy"
+msgstr "Définir une politique réutilisable"
+
+msgid "Blank values inherit from the parent, then safe defaults."
+msgstr "Les valeurs vides héritent du parent, puis des valeurs sûres par défaut."
+
+msgid "Create policy"
+msgstr "Créer la politique"
+
+msgid "Bind policy to application"
+msgstr "Associer une politique à une application"
+
+msgid "Optional JSON overrides are validated and remain visible."
+msgstr "Les surcharges JSON facultatives sont validées et restent visibles."
+
+msgid "Create binding"
+msgstr "Créer l’association"
+
+msgid "Applications and effective policies"
+msgstr "Applications et politiques effectives"
+
+msgid "Application"
+msgstr "Application"
+
+msgid "Policy"
+msgstr "Politique"
+
+msgid "Effective configuration"
+msgstr "Configuration effective"
+
+msgid "Status"
+msgstr "État"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "thresholds"
+msgstr "seuils"
+
+msgid "Overrides"
+msgstr "Surcharges"
+
+msgid "Active"
+msgstr "Actif"
+
+msgid "Inactive"
+msgstr "Inactif"
+
+msgid "Toggle"
+msgstr "Basculer"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "No application has an assigned policy yet."
+msgstr "Aucune application n’a encore de politique associée."
+
+msgid "Applications"
+msgstr "Applications"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Hostname"
+msgstr "Nom d’hôte"
+
+msgid "Enabled"
+msgstr "Activé"
+
+msgid "Disabled"
+msgstr "Désactivé"
+
+msgid "No application."
+msgstr "Aucune application."
+
+msgid "Reusable policies"
+msgstr "Politiques réutilisables"
+
+msgid "Parent"
+msgstr "Parent"
+
+msgid "Values"
+msgstr "Valeurs"
+
+msgid "No policy."
+msgstr "Aucune politique."
+
+msgid "Managed exclusions and address lists"
+msgstr "Exclusions gérées et listes d’adresses"
+
+msgid "WAFControl generates separate files without modifying OWASP CRS sources. Every deployment is validated before reload and rolled back as one unit on failure."
+msgstr "WAFControl génère des fichiers séparés sans modifier les sources OWASP CRS. Chaque déploiement est validé avant rechargement et annulé intégralement en cas d’échec."
+
+msgid "Managed policy files are connected to ModSecurity."
+msgstr "Les fichiers de politiques gérées sont intégrés à ModSecurity."
+
+msgid "Deployment is disabled until the include order is configured."
+msgstr "Le déploiement est désactivé tant que l’ordre des inclusions n’est pas configuré."
+
+msgid "Add"
+msgstr "Ajouter"
+
+msgid "before the CRS rules and"
+msgstr "avant les règles CRS et"
+
+msgid "after the CRS rules."
+msgstr "après les règles CRS."
+
+msgid "WAF bypass"
+msgstr "Contournement du WAF"
+
+msgid "%(count)s active exclusion"
+msgid_plural "%(count)s active exclusions"
+msgstr[0] "%(count)s exclusion active"
+msgstr[1] "%(count)s exclusions actives"
+
+msgid "%(count)s active address entry"
+msgid_plural "%(count)s active address entries"
+msgstr[0] "%(count)s entrée d’adresse active"
+msgstr[1] "%(count)s entrées d’adresses actives"
+
+msgid "%(count)s active application"
+msgid_plural "%(count)s active applications"
+msgstr[0] "%(count)s application active"
+msgstr[1] "%(count)s applications actives"
+
+msgid "Policy objects expiring within seven days:"
+msgstr "Objets de politique expirant dans les sept jours :"
+
+msgid "Create an address list"
+msgstr "Créer une liste d’adresses"
+
+msgid "Create list"
+msgstr "Créer la liste"
+
+msgid "Add an IPv4, IPv6 or CIDR entry"
+msgstr "Ajouter une adresse IPv4, IPv6 ou un CIDR"
+
+msgid "Add entry"
+msgstr "Ajouter l’entrée"
+
+msgid "Disable"
+msgstr "Désactiver"
+
+msgid "Enable"
+msgstr "Activer"
+
+msgid "Network"
+msgstr "Réseau"
+
+msgid "Comment"
+msgstr "Commentaire"
+
+msgid "Source"
+msgstr "Source"
+
+msgid "Validity"
+msgstr "Validité"
+
+msgid "No entry."
+msgstr "Aucune entrée."
+
+msgid "No address list has been created."
+msgstr "Aucune liste d’adresses n’a été créée."
+
+msgid "Edit"
+msgstr "Modifier"
+
+msgid "Create a minimal CRS exclusion"
+msgstr "Créer une exclusion CRS minimale"
+
+msgid "Prefer removing one variable from one rule. Scope the exception whenever possible. New exclusions remain drafts until explicitly approved."
+msgstr "Préférez le retrait d’une variable pour une seule règle. Limitez l’exception autant que possible. Les nouvelles exclusions restent en brouillon jusqu’à leur approbation explicite."
+
+msgid "Save as draft"
+msgstr "Enregistrer comme brouillon"
+
+msgid "Create exclusion"
+msgstr "Créer l’exclusion"
+
+msgid "Rule exclusions"
+msgstr "Exclusions de règles"
+
+msgid "Rule / target"
+msgstr "Règle / cible"
+
+msgid "Scope"
+msgstr "Périmètre"
+
+msgid "Historical matches"
+msgstr "Correspondances historiques"
+
+msgid "Owner / rationale"
+msgstr "Responsable / justification"
+
+msgid "Expiry"
+msgstr "Expiration"
+
+msgid "Clone"
+msgstr "Cloner"
+
+msgid "Revoke"
+msgstr "Révoquer"
+
+msgid "Approve"
+msgstr "Approuver"
+
+msgid "No exclusion."
+msgstr "Aucune exclusion."
+
+msgid "Candidate policy and deployment diff"
+msgstr "Politique candidate et différences de déploiement"
+
+msgid "Save immutable candidate"
+msgstr "Enregistrer le candidat immuable"
+
+msgid "Diff"
+msgstr "Différences"
+
+msgid "Before CRS"
+msgstr "Avant le CRS"
+
+msgid "After CRS"
+msgstr "Après le CRS"
+
+msgid "Immutable policy revisions"
+msgstr "Révisions immuables des politiques"
+
+msgid "A separate user must approve each candidate."
+msgstr "Un autre utilisateur doit approuver chaque candidat."
+
+msgid "Revision"
+msgstr "Révision"
+
+msgid "Created"
+msgstr "Créée"
+
+msgid "Approved by"
+msgstr "Approuvée par"
+
+msgid "Validate and deploy"
+msgstr "Valider et déployer"
+
+msgid "No frozen revision yet."
+msgstr "Aucune révision figée pour le moment."
+
+msgid "Address list"
+msgstr "Liste d’adresses"
+
+msgid "Classification"
+msgstr "Classification"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Engine mode"
+msgstr "Mode du moteur"
+
+msgid "Expires at"
+msgstr "Expire le"
+
+msgid "HTTP method"
+msgstr "Méthode HTTP"
+
+msgid "Host"
+msgstr "Hôte"
+
+msgid "IPv4, IPv6 or CIDR"
+msgstr "IPv4, IPv6 ou CIDR"
+
+msgid "Inbound threshold"
+msgstr "Seuil entrant"
+
+msgid "Notes"
+msgstr "Notes"
+
+msgid "Outbound threshold"
+msgstr "Seuil sortant"
+
+msgid "Owner"
+msgstr "Responsable"
+
+msgid "Paranoia level"
+msgstr "Niveau de paranoïa"
+
+msgid "Parent policy"
+msgstr "Politique parente"
+
+msgid "Path"
+msgstr "Chemin"
+
+msgid "Path matching"
+msgstr "Correspondance du chemin"
+
+msgid "Purpose"
+msgstr "Usage"
+
+msgid "Rationale"
+msgstr "Justification"
+
+msgid "Rule ID"
+msgstr "Identifiant de règle"
+
+msgid "Rule tag"
+msgstr "Étiquette de règle"
+
+msgid "Source IP"
+msgstr "IP source"
+
+msgid "Starts at"
+msgstr "Débute le"
+
+msgid "Target variable"
+msgstr "Variable cible"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Admin profile"
+msgstr "Profil administrateur"
+
+msgid "Personal information"
+msgstr "Informations personnelles"
+
+msgid "Change password"
+msgstr "Modifier le mot de passe"
+
+msgid "Authenticator app"
+msgstr "Application d’authentification"
+
+msgid "YubiKey / security key"
+msgstr "YubiKey / clé de sécurité"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "Update password"
+msgstr "Mettre à jour le mot de passe"
+
+msgid "Authenticator-app 2FA is enabled."
+msgstr "Le second facteur par application d’authentification est activé."
+
+msgid "Enter a 6-digit code to disable it:"
+msgstr "Saisissez un code à 6 chiffres pour le désactiver :"
+
+msgid "Disable authenticator app"
+msgstr "Désactiver l’application d’authentification"
+
+msgid "Use a TOTP authenticator application as a second factor."
+msgstr "Utilisez une application TOTP comme second facteur."
+
+msgid "Scan this QR code with your authenticator app:"
+msgstr "Scannez ce QR code avec votre application d’authentification :"
+
+msgid "Authenticator setup QR code"
+msgstr "QR code de configuration de l’authentification"
+
+msgid "Or use this secret key:"
+msgstr "Ou utilisez cette clé secrète :"
+
+msgid "Enter the 6-digit code:"
+msgstr "Saisissez le code à 6 chiffres :"
+
+msgid "Enable authenticator app"
+msgstr "Activer l’application d’authentification"
+
+msgid "Start authenticator setup"
+msgstr "Configurer l’application d’authentification"
+
+msgid "Register a YubiKey or another FIDO2/WebAuthn security key. Your password remains the first factor and touching the key provides the second factor."
+msgstr "Enregistrez une YubiKey ou une autre clé de sécurité FIDO2/WebAuthn. Votre mot de passe reste le premier facteur et l’utilisation physique de la clé fournit le second."
+
+msgid "Before signing out, keep the authenticator app enabled or register a second security key. Losing your only key requires an administrative account-recovery procedure."
+msgstr "Avant de vous déconnecter, conservez l’application d’authentification active ou enregistrez une seconde clé de sécurité. La perte de votre unique clé nécessite une procédure administrative de récupération du compte."
+
+msgid "Registered security keys"
+msgstr "Clés de sécurité enregistrées"
+
+msgid "Registered"
+msgstr "Enregistrée"
+
+msgid "Last used"
+msgstr "Dernière utilisation"
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Never"
+msgstr "Jamais"
+
+msgid "Current password"
+msgstr "Mot de passe actuel"
+
+msgid "Remove"
+msgstr "Supprimer"
+
+msgid "No security key is registered."
+msgstr "Aucune clé de sécurité n’est enregistrée."
+
+msgid "Add a security key"
+msgstr "Ajouter une clé de sécurité"
+
+msgid "Key name"
+msgstr "Nom de la clé"
+
+msgid "For example: Main YubiKey"
+msgstr "Par exemple : YubiKey principale"
+
+msgid "WebAuthn is not configured on this server. Set the RP ID and allowed HTTPS origin before registering a security key."
+msgstr "WebAuthn n’est pas configuré sur ce serveur. Définissez l’identifiant RP et l’origine HTTPS autorisée avant d’enregistrer une clé de sécurité."
+
+msgid "Operation failed."
+msgstr "L’opération a échoué."
+
+msgid "Waiting for your security key…"
+msgstr "En attente de votre clé de sécurité…"
+
+msgid "This browser does not support WebAuthn."
+msgstr "Ce navigateur ne prend pas en charge WebAuthn."
+
+msgid "Registration failed."
+msgstr "L’enregistrement a échoué."
+
+msgid "Security key registered successfully."
+msgstr "La clé de sécurité a été enregistrée."
+
+msgid "Security key registration failed."
+msgstr "L’enregistrement de la clé de sécurité a échoué."
+
+msgid "Remove this security key?"
+msgstr "Supprimer cette clé de sécurité ?"
+
+msgid "Removal failed."
+msgstr "La suppression a échoué."
+
+msgid "Security key removal failed."
+msgstr "La suppression de la clé de sécurité a échoué."
+
+msgid "Application settings"
+msgstr "Paramètres de l’application"
+
+msgid "Save settings"
+msgstr "Enregistrer les paramètres"
+
+msgid "WAF settings"
+msgstr "Paramètres du WAF"
+
+msgid "ModSecurity WAF settings"
+msgstr "Paramètres du WAF ModSecurity"
+
+msgid "Server traffic overview"
+msgstr "Vue d’ensemble du trafic serveur"
+
+msgid "Total connections"
+msgstr "Connexions totales"
+
+msgid "Top 20 IPs with most connections"
+msgstr "20 IP ayant le plus de connexions"
+
+msgid "No data"
+msgstr "Aucune donnée"
+
+msgid "SYN_RECV connections (potential DDoS)"
+msgstr "Connexions SYN_RECV (DDoS potentiel)"
+
+msgid "No suspicious activity"
+msgstr "Aucune activité suspecte"
+
+msgid "Connection states"
+msgstr "États des connexions"
+
+msgid "This list updates automatically every minute."
+msgstr "Cette liste est actualisée automatiquement chaque minute."
+
+msgid "Country"
+msgstr "Pays"
+
+msgid "Filter"
+msgstr "Filtrer"
+
+msgid "Total attacks"
+msgstr "Nombre total d’attaques"
+
+msgid "No attackers found."
+msgstr "Aucun attaquant trouvé."
+
+msgid "Previous"
+msgstr "Précédent"
+
+msgid "Next"
+msgstr "Suivant"
+
+msgid "CRS rule files"
+msgstr "Fichiers de règles CRS"
+
+msgid "View rules"
+msgstr "Voir les règles"
+
+msgid "No rule files found."
+msgstr "Aucun fichier de règles trouvé."
+
+msgid "Rule viewer"
+msgstr "Visualiseur de règles"
+
+msgid "Back to categories"
+msgstr "Retour aux catégories"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "View"
+msgstr "Voir"
+
+msgid "No rules found in this file."
+msgstr "Aucune règle trouvée dans ce fichier."
+
+msgid "Rule content"
+msgstr "Contenu de la règle"
+
+msgid "Detected WAF attacks"
+msgstr "Attaques WAF détectées"
+
+msgid "Critical WAF attacks"
+msgstr "Attaques WAF critiques"
+
+msgid "Host / domain"
+msgstr "Hôte / domaine"
+
+msgid "All statuses"
+msgstr "Tous les états"
+
+msgid "Blocked"
+msgstr "Bloquée"
+
+msgid "Detected"
+msgstr "Détectée"
+
+msgid "All triage states"
+msgstr "Tous les états de qualification"
+
+#, python-format
+msgid "Showing %(filtered_count)s of %(total_attacks)s total attacks."
+msgstr "Affichage de %(filtered_count)s attaques sur %(total_attacks)s."
+
+msgid "Time"
+msgstr "Heure"

@@ -1,7 +1,8 @@
 {% extends 'dashboard/main/main.html' %}
+{% load i18n %}
 
 {% block content %}
-    {% block title %}Rules Setting - Owasp Wafcontrol{% endblock %}
+    {% block title %}{% translate "CRS rule files" %} - OWASP WAFControl{% endblock %}
 
     <div id="content-page" class="content-page">
         <div class="container-fluid">
@@ -10,7 +11,7 @@
                     <div class="iq-card">
                         <div class="iq-card-header d-flex justify-content-between">
                             <div class="iq-header-title">
-                                <h4 class="card-title">CRS Rule Files - Version {{ crs_version }}</h4>
+                                <h4 class="card-title">{% translate "CRS rule files" %} — {{ crs_version }}</h4>
                             </div>
                         </div>
                         <div class="iq-card-body">
@@ -19,10 +20,10 @@
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         {{ file }}
                                         <a href="{% url 'wafinstaller:rules_by_file' file %}"
-                                           class="btn btn-sm btn-primary">View Rules</a>
+                                           class="btn btn-sm btn-primary">{% translate "View rules" %}</a>
                                     </li>
                                 {% empty %}
-                                    <li class="list-group-item">No rule files found.</li>
+                                    <li class="list-group-item">{% translate "No rule files found." %}</li>
                                 {% endfor %}
                             </ul>
                         </div>

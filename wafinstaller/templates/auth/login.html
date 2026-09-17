@@ -1,5 +1,5 @@
 {% extends 'auth/main/main.html' %}
-{% load static %}
+{% load i18n static %}
 {% block content %}
     <section class="sign-in-page">
         <div class="container p-0" id="sign-in-page-box">
@@ -7,8 +7,8 @@
             <div class="bg-white form-container sign-in-container">
                 <div class="sign-in-page-data">
                     <div class="sign-in-from w-100 m-auto">
-                        <h1 class="mb-3 text-center">Sign in</h1>
-                        <p class="text-center text-dark">Enter your username and password to access owc panel.</p>
+                        <h1 class="mb-3 text-center">{% translate "Sign in" %}</h1>
+                        <p class="text-center text-dark">{% translate "Enter your username and password to access WAFControl." %}</p>
 
                         <form method="post" action="{% url 'wafinstaller:login' %}" class="mt-4">
                             {% csrf_token %}
@@ -20,7 +20,7 @@
                             {% endif %}
 
                             <div class="form-group">
-                                <label for="{{ form.username.id_for_label }}">Username</label>
+                                <label for="{{ form.username.id_for_label }}">{% translate "Username" %}</label>
                                 {{ form.username }}
                                 {% if form.username.errors %}
                                     <div class="text-danger">{{ form.username.errors }}</div>
@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="{{ form.password.id_for_label }}">Password</label>
+                                <label for="{{ form.password.id_for_label }}">{% translate "Password" %}</label>
                                 {{ form.password }}
                                 {% if form.password.errors %}
                                     <div class="text-danger">{{ form.password.errors }}</div>
@@ -43,7 +43,7 @@
                             </div>
 
                             <div class="sign-info">
-                                <button type="submit" class="btn btn-primary mb-2">Sign in</button>
+                                <button type="submit" class="btn btn-primary mb-2">{% translate "Sign in" %}</button>
                             </div>
                         </form>
                     </div>
@@ -56,8 +56,8 @@
                         <a class="sign-in-logo mb-5" href="#">
                             <img src="{% static 'dashboard/images/logo.png' %}" class="img-fluid" alt="logo">
                         </a>
-                        <p>To keep connected with us please login with your personal info</p>
-                        <button class="btn iq-border-primary mt-2" id="signIn">Sign In</button>
+                        <p>{% translate "Sign in with your personal account to access the administration panel." %}</p>
+                        <button class="btn iq-border-primary mt-2" id="signIn">{% translate "Sign in" %}</button>
                     </div>
                     <div class="overlay-panel overlay-right">
                         <a class="sign-in-logo mb-5" href="#">
@@ -65,7 +65,7 @@
                         </a>
                         <h3 style="color: #00d0ff">Owasp WafControl</h3>
                         <br>
-                        <h>This project utilizes OWASP Core Rule Set — special thanks to the CRS maintainers</h>
+                        <p>{% translate "This project uses the OWASP Core Rule Set. Thanks to the CRS maintainers." %}</p>
 
                     </div>
                 </div>

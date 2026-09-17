@@ -1,7 +1,7 @@
 {% extends 'dashboard/main/main.html' %}
-{% load static %}
+{% load i18n static %}
 {% block content %}
-{% block title %}Admin Profile - OWASP WAFControl{% endblock %}
+{% block title %}{% translate "Admin profile" %} - OWASP WAFControl{% endblock %}
 <div id="content-page" class="content-page">
   <div class="container-fluid">
     {% for message in messages %}<div class="alert alert-{{ message.tags }}">{{ message }}</div>{% endfor %}
@@ -9,66 +9,66 @@
       <div class="col-lg-12">
         <div class="iq-card"><div class="iq-card-body p-0"><div class="iq-edit-list">
           <ul class="iq-edit-profile d-flex nav nav-pills">
-            <li class="col-md-3 p-0"><a class="nav-link" data-toggle="pill" href="#personal-information">Personal Information</a></li>
-            <li class="col-md-3 p-0"><a class="nav-link" data-toggle="pill" href="#change-password">Change Password</a></li>
-            <li class="col-md-3 p-0"><a class="nav-link" data-toggle="pill" href="#two-factor">Authenticator App</a></li>
-            <li class="col-md-3 p-0"><a class="nav-link" data-toggle="pill" href="#yubikey">YubiKey / Security Key</a></li>
+            <li class="col-md-3 p-0"><a class="nav-link" data-toggle="pill" href="#personal-information">{% translate "Personal information" %}</a></li>
+            <li class="col-md-3 p-0"><a class="nav-link" data-toggle="pill" href="#change-password">{% translate "Change password" %}</a></li>
+            <li class="col-md-3 p-0"><a class="nav-link" data-toggle="pill" href="#two-factor">{% translate "Authenticator app" %}</a></li>
+            <li class="col-md-3 p-0"><a class="nav-link" data-toggle="pill" href="#yubikey">{% translate "YubiKey / security key" %}</a></li>
           </ul>
         </div></div></div>
       </div>
       <div class="col-lg-12"><div class="iq-edit-list-data"><div class="tab-content">
         <div class="tab-pane fade" id="personal-information" role="tabpanel">
           <div class="iq-card">
-            <div class="iq-card-header"><h4 class="card-title">Personal Information</h4></div>
+            <div class="iq-card-header"><h4 class="card-title">{% translate "Personal information" %}</h4></div>
             <div class="iq-card-body">
               <form method="post">{% csrf_token %}{{ profile_form.as_p }}
-                <button type="submit" name="update_profile" class="btn btn-primary">Save</button>
+                <button type="submit" name="update_profile" class="btn btn-primary">{% translate "Save" %}</button>
               </form>
             </div>
           </div>
         </div>
         <div class="tab-pane fade" id="change-password" role="tabpanel">
           <div class="iq-card">
-            <div class="iq-card-header"><h4 class="card-title">Change Password</h4></div>
+            <div class="iq-card-header"><h4 class="card-title">{% translate "Change password" %}</h4></div>
             <div class="iq-card-body">
               <form method="post">{% csrf_token %}{{ password_form.as_p }}
-                <button type="submit" name="change_password" class="btn btn-warning">Update Password</button>
+                <button type="submit" name="change_password" class="btn btn-warning">{% translate "Update password" %}</button>
               </form>
             </div>
           </div>
         </div>
         <div class="tab-pane fade" id="two-factor" role="tabpanel">
           <div class="iq-card">
-            <div class="iq-card-header"><h4 class="card-title">Authenticator App</h4></div>
+            <div class="iq-card-header"><h4 class="card-title">{% translate "Authenticator app" %}</h4></div>
             <div class="iq-card-body">
               {% if user.userprofile.two_factor_enabled %}
-                <p class="text-success">Authenticator-app 2FA is <strong>enabled</strong>.</p>
+                <p class="text-success">{% translate "Authenticator-app 2FA is enabled." %}</p>
                 <form method="post">{% csrf_token %}
                   <div class="form-group">
-                    <label for="otp-disable">Enter a 6-digit code to disable it:</label>
+                    <label for="otp-disable">{% translate "Enter a 6-digit code to disable it:" %}</label>
                     <input id="otp-disable" type="text" name="otp" inputmode="numeric"
                            autocomplete="one-time-code" class="form-control" required>
                   </div>
-                  <button type="submit" name="disable_2fa" class="btn btn-danger">Disable authenticator app</button>
+                  <button type="submit" name="disable_2fa" class="btn btn-danger">{% translate "Disable authenticator app" %}</button>
                 </form>
               {% else %}
-                <p class="text-muted">Use a TOTP authenticator application as a second factor.</p>
+                <p class="text-muted">{% translate "Use a TOTP authenticator application as a second factor." %}</p>
                 {% if qr_code and secret %}
-                  <p>Scan this QR code with your authenticator app:</p>
-                  <img src="data:image/png;base64,{{ qr_code }}" alt="Authenticator setup QR code"
+                  <p>{% translate "Scan this QR code with your authenticator app:" %}</p>
+                  <img src="data:image/png;base64,{{ qr_code }}" alt="{% translate 'Authenticator setup QR code' %}"
                        class="mb-3" style="max-width: 200px;">
-                  <p>Or use this secret key: <code>{{ secret }}</code></p>
+                  <p>{% translate "Or use this secret key:" %} <code>{{ secret }}</code></p>
                   <form method="post">{% csrf_token %}
                     <div class="form-group">
-                      <label for="otp-enable">Enter the 6-digit code:</label>
+                      <label for="otp-enable">{% translate "Enter the 6-digit code:" %}</label>
                       <input id="otp-enable" type="text" name="otp" inputmode="numeric"
                              autocomplete="one-time-code" class="form-control" required>
                     </div>
-                    <button type="submit" name="enable_2fa" class="btn btn-success">Enable authenticator app</button>
+                    <button type="submit" name="enable_2fa" class="btn btn-success">{% translate "Enable authenticator app" %}</button>
                   </form>
                 {% else %}
                   <form method="post">{% csrf_token %}
-                    <button type="submit" name="start_2fa" class="btn btn-info">Start authenticator setup</button>
+                    <button type="submit" name="start_2fa" class="btn btn-info">{% translate "Start authenticator setup" %}</button>
                   </form>
                 {% endif %}
               {% endif %}
@@ -77,33 +77,32 @@
         </div>
         <div class="tab-pane fade" id="yubikey" role="tabpanel">
           <div class="iq-card">
-            <div class="iq-card-header"><h4 class="card-title">YubiKey / Security Key</h4></div>
+            <div class="iq-card-header"><h4 class="card-title">{% translate "YubiKey / security key" %}</h4></div>
             <div class="iq-card-body">
               {% csrf_token %}
               {% if webauthn_configured %}
-                <p>Register a YubiKey or another FIDO2/WebAuthn security key. Your password remains
-                   the first factor and touching the key provides the second factor.</p>
-                <div class="alert alert-warning">Before signing out, keep the authenticator app enabled or register a second security key. Losing your only key requires an administrative account-recovery procedure.</div>
+                <p>{% translate "Register a YubiKey or another FIDO2/WebAuthn security key. Your password remains the first factor and touching the key provides the second factor." %}</p>
+                <div class="alert alert-warning">{% translate "Before signing out, keep the authenticator app enabled or register a second security key. Losing your only key requires an administrative account-recovery procedure." %}</div>
                 <div id="yubikey-status" class="alert d-none" role="status" aria-live="polite"></div>
                 {% if yubikey_credentials %}
-                  <h5>Registered security keys</h5>
+                  <h5>{% translate "Registered security keys" %}</h5>
                   <div class="table-responsive mb-4"><table class="table">
-                    <thead><tr><th>Name</th><th>Registered</th><th>Last used</th><th>Action</th></tr></thead>
+                    <thead><tr><th>{% translate "Name" %}</th><th>{% translate "Registered" %}</th><th>{% translate "Last used" %}</th><th>{% translate "Action" %}</th></tr></thead>
                     <tbody>
                     {% for credential in yubikey_credentials %}
                       <tr>
                         <td>{{ credential.name }}</td>
                         <td>{{ credential.created_at|date:"Y-m-d H:i" }} UTC</td>
-                        <td>{% if credential.last_used_at %}{{ credential.last_used_at|date:"Y-m-d H:i" }} UTC{% else %}Never{% endif %}</td>
+                        <td>{% if credential.last_used_at %}{{ credential.last_used_at|date:"Y-m-d H:i" }} UTC{% else %}{% translate "Never" %}{% endif %}</td>
                         <td>
                           <form class="yubikey-delete-form"
                                 data-url="{% url 'wafinstaller:yubikey_delete' credential.id %}">
-                            <label class="sr-only" for="delete-password-{{ credential.id }}">Current password</label>
+                            <label class="sr-only" for="delete-password-{{ credential.id }}">{% translate "Current password" %}</label>
                             <input id="delete-password-{{ credential.id }}" type="password"
                                    name="current_password" autocomplete="current-password"
                                    class="form-control form-control-sm mb-2"
-                                   placeholder="Current password" required>
-                            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                                   placeholder="{% translate 'Current password' %}" required>
+                            <button type="submit" class="btn btn-sm btn-danger">{% translate "Remove" %}</button>
                           </form>
                         </td>
                       </tr>
@@ -111,25 +110,24 @@
                     </tbody>
                   </table></div>
                 {% else %}
-                  <p class="text-muted">No security key is registered.</p>
+                  <p class="text-muted">{% translate "No security key is registered." %}</p>
                 {% endif %}
-                <h5>Add a security key</h5>
+                <h5>{% translate "Add a security key" %}</h5>
                 <form id="yubikey-registration-form">
                   <div class="form-group">
-                    <label for="yubikey-name">Key name</label>
+                    <label for="yubikey-name">{% translate "Key name" %}</label>
                     <input id="yubikey-name" name="name" type="text" maxlength="80"
-                           class="form-control" placeholder="For example: Main YubiKey" required>
+                           class="form-control" placeholder="{% translate 'For example: Main YubiKey' %}" required>
                   </div>
                   <div class="form-group">
-                    <label for="yubikey-password">Current password</label>
+                    <label for="yubikey-password">{% translate "Current password" %}</label>
                     <input id="yubikey-password" name="current_password" type="password"
                            autocomplete="current-password" class="form-control" required>
                   </div>
-                  <button id="yubikey-register-button" type="submit" class="btn btn-primary">Add security key</button>
+                  <button id="yubikey-register-button" type="submit" class="btn btn-primary">{% translate "Add security key" %}</button>
                 </form>
               {% else %}
-                <div class="alert alert-warning">WebAuthn is not configured on this server. Set the RP ID and
-                  allowed HTTPS origin before registering a security key.</div>
+                <div class="alert alert-warning">{% translate "WebAuthn is not configured on this server. Set the RP ID and allowed HTTPS origin before registering a security key." %}</div>
               {% endif %}
             </div>
           </div>
@@ -138,8 +136,28 @@
     </div>
   </div>
 </div>
+{% translate "Operation failed." as msg_operation_failed %}
+{% translate "Waiting for your security key…" as msg_waiting %}
+{% translate "This browser does not support WebAuthn." as msg_unsupported %}
+{% translate "Registration failed." as msg_registration_failed %}
+{% translate "Security key registered successfully." as msg_registered %}
+{% translate "Security key registration failed." as msg_registration_error %}
+{% translate "Remove this security key?" as msg_remove_confirm %}
+{% translate "Removal failed." as msg_removal_failed %}
+{% translate "Security key removal failed." as msg_removal_error %}
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+  const messages = {
+    operationFailed: "{{ msg_operation_failed|escapejs }}",
+    waiting: "{{ msg_waiting|escapejs }}",
+    unsupported: "{{ msg_unsupported|escapejs }}",
+    registrationFailed: "{{ msg_registration_failed|escapejs }}",
+    registered: "{{ msg_registered|escapejs }}",
+    registrationError: "{{ msg_registration_error|escapejs }}",
+    removeConfirm: "{{ msg_remove_confirm|escapejs }}",
+    removalFailed: "{{ msg_removal_failed|escapejs }}",
+    removalError: "{{ msg_removal_error|escapejs }}"
+  };
   const tab = "{{ active_tab|default:'personal-information'|escapejs }}";
   document.querySelector('a[href="#' + tab + '"]')?.classList.add("active");
   document.querySelector("#" + tab)?.classList.add("show", "active");
@@ -189,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ...options
     });
     const data = await response.json();
-    if (!response.ok) throw new Error(data.error || "Operation failed.");
+    if (!response.ok) throw new Error(data.error || messages.operationFailed);
     return data;
   }
 
@@ -198,10 +216,10 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
     const button = document.getElementById("yubikey-register-button");
     button.disabled = true;
-    showStatus("Waiting for your security key…", "info");
+    showStatus(messages.waiting, "info");
     try {
       if (!window.PublicKeyCredential || !navigator.credentials) {
-        throw new Error("This browser does not support WebAuthn.");
+        throw new Error(messages.unsupported);
       }
       const values = new FormData(registrationForm);
       const beginResponse = await fetch(
@@ -210,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
          headers: {"X-CSRFToken": csrfToken}, body: values}
       );
       const options = await beginResponse.json();
-      if (!beginResponse.ok) throw new Error(options.error || "Registration failed.");
+      if (!beginResponse.ok) throw new Error(options.error || messages.registrationFailed);
       const credential = await navigator.credentials.create({
         publicKey: decodeCreationOptions(options.publicKey)
       });
@@ -218,12 +236,12 @@ document.addEventListener("DOMContentLoaded", function () {
         "{% url 'wafinstaller:yubikey_registration_complete' %}",
         {method: "POST", body: JSON.stringify({credential: serializeRegistration(credential)})}
       );
-      showStatus("Security key registered successfully.", "success");
+      showStatus(messages.registered, "success");
       window.setTimeout(function () {
         window.location.href = "{% url 'wafinstaller:admin_profile' %}?tab=yubikey";
       }, 600);
     } catch (error) {
-      showStatus(error.message || "Security key registration failed.", "danger");
+      showStatus(error.message || messages.registrationError, "danger");
       button.disabled = false;
     } finally {
       document.getElementById("yubikey-password").value = "";
@@ -233,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".yubikey-delete-form").forEach(form => {
     form.addEventListener("submit", async event => {
       event.preventDefault();
-      if (!window.confirm("Remove this security key?")) return;
+      if (!window.confirm(messages.removeConfirm)) return;
       const values = new FormData(form);
       try {
         const response = await fetch(form.dataset.url, {
@@ -241,10 +259,10 @@ document.addEventListener("DOMContentLoaded", function () {
           headers: {"X-CSRFToken": csrfToken}, body: values
         });
         const data = await response.json();
-        if (!response.ok) throw new Error(data.error || "Removal failed.");
+        if (!response.ok) throw new Error(data.error || messages.removalFailed);
         window.location.href = "{% url 'wafinstaller:admin_profile' %}?tab=yubikey";
       } catch (error) {
-        showStatus(error.message || "Security key removal failed.", "danger");
+        showStatus(error.message || messages.removalError, "danger");
       } finally {
         form.querySelector('input[name="current_password"]').value = "";
       }

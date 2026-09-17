@@ -1,7 +1,8 @@
 {% extends 'dashboard/main/main.html' %}
+{% load i18n %}
 
 {% block content %}
-    {% block title %}Rule Viewer - Owasp Wafcontrol{% endblock %}
+    {% block title %}{% translate "Rule viewer" %} - OWASP WAFControl{% endblock %}
 
     <div id="content-page" class="content-page">
         <div class="container-fluid">
@@ -16,7 +17,7 @@
                                     v{{ crs_version }})</h5>
                             </div>
                             <a href="{% url 'wafinstaller:categorized_files' %}"
-                               class="btn btn-sm btn-outline-secondary">← Back to Categories</a>
+                               class="btn btn-sm btn-outline-secondary">← {% translate "Back to categories" %}</a>
                         </div>
                         <div class="iq-card-body">
                             <div class="table-responsive">
@@ -25,9 +26,9 @@
                                     <tr>
                                         <th>#</th>
                                         <th>ID</th>
-                                        <th>Message</th>
-                                        <th>Status</th>
-                                        <th>View</th>
+                                        <th>{% translate "Message" %}</th>
+                                        <th>{% translate "Status" %}</th>
+                                        <th>{% translate "View" %}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -38,22 +39,22 @@
                                             <td>{{ rule.msg }}</td>
                                             <td>
                                                 {% if rule.enabled %}
-                                                    <span class="badge badge-success">Enabled</span>
+                                                    <span class="badge badge-success">{% translate "Enabled" %}</span>
                                                 {% else %}
-                                                    <span class="badge badge-danger">Disabled</span>
+                                                    <span class="badge badge-danger">{% translate "Disabled" %}</span>
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-sm btn-info"
                                                         onclick="showRuleContent(`{{ rule.raw|escapejs }}`, '{{ rule.id }}')"
                                                         data-toggle="modal" data-target="#ruleContentModal">
-                                                    View
+                                                    {% translate "View" %}
                                                 </button>
                                             </td>
                                         </tr>
                                     {% empty %}
                                         <tr>
-                                            <td colspan="5">No rules found in this file.</td>
+                                            <td colspan="5">{% translate "No rules found in this file." %}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
@@ -72,7 +73,7 @@
         <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="ruleModalLabel">Rule Content (ID: <span id="ruleModalId"></span>)</h5>
+                    <h5 class="modal-title" id="ruleModalLabel">{% translate "Rule content" %} (ID: <span id="ruleModalId"></span>)</h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span>&times;</span>
                     </button>

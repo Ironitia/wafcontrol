@@ -1,6 +1,7 @@
 from typing import ClassVar
 
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from wafinstaller.models import (
     AddressEntry,
@@ -13,10 +14,47 @@ from wafinstaller.models import (
 )
 
 
+FIELD_LABELS = {
+    "address_list": _("Address list"),
+    "application": _("Application"),
+    "classification": _("Classification"),
+    "comment": _("Comment"),
+    "description": _("Description"),
+    "enabled": _("Enabled"),
+    "engine_mode": _("Engine mode"),
+    "expires_at": _("Expires at"),
+    "host": _("Host"),
+    "hostname": _("Hostname"),
+    "inbound_threshold": _("Inbound threshold"),
+    "kind": _("Type"),
+    "method": _("HTTP method"),
+    "name": _("Name"),
+    "network": _("IPv4, IPv6 or CIDR"),
+    "notes": _("Notes"),
+    "outbound_threshold": _("Outbound threshold"),
+    "overrides": _("Overrides"),
+    "owner": _("Owner"),
+    "paranoia_level": _("Paranoia level"),
+    "parent": _("Parent policy"),
+    "path": _("Path"),
+    "path_match": _("Path matching"),
+    "policy": _("Policy"),
+    "purpose": _("Purpose"),
+    "rationale": _("Rationale"),
+    "rule_id": _("Rule ID"),
+    "rule_tag": _("Rule tag"),
+    "source": _("Source"),
+    "source_ip": _("Source IP"),
+    "starts_at": _("Starts at"),
+    "target": _("Target variable"),
+}
+
+
 class StyledModelForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        for field in self.fields.values():
+        for field_name, field in self.fields.items():
+            field.label = FIELD_LABELS.get(field_name, field.label)
             css_class = (
                 "form-check-input position-static ml-2 align-middle"
                 if isinstance(field.widget, forms.CheckboxInput)

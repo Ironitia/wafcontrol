@@ -1,7 +1,7 @@
 {% extends 'dashboard/main/main.html' %}
-{% load static %}
+{% load i18n static %}
 {% block content %}
-    {% block title %}Critical Attacks - Owasp Wafcontrol{% endblock %}
+    {% block title %}{% translate "Critical attacks" %} - OWASP WAFControl{% endblock %}
 
     <style>
         .cell-truncate {
@@ -48,8 +48,8 @@
                     <div class="iq-card">
                         <div class="iq-card-header d-flex justify-content-between">
                             <div class="iq-header-title">
-                                <h4 class="card-title">Critical WAF Attacks</h4>
-                                <small class="text-muted">This list updates automatically every 1 minute</small>
+                                <h4 class="card-title">{% translate "Critical WAF attacks" %}</h4>
+                                <small class="text-muted">{% translate "This list updates automatically every minute." %}</small>
                             </div>
                         </div>
 
@@ -57,7 +57,7 @@
                             <form method="get" class="form-inline mb-3">
                                 <input type="text" name="ip" placeholder="IP" class="form-control mr-2"
                                        value="{{ request.GET.ip }}">
-                                <input type="text" name="host" placeholder="Host/Domain" class="form-control mr-2"
+                                <input type="text" name="host" placeholder="{% translate 'Host / domain' %}" class="form-control mr-2"
                                        value="{{ request.GET.host }}">
                                 <input type="text" name="rule_id" placeholder="Rule ID" class="form-control mr-2"
                                        value="{{ request.GET.rule_id }}">
@@ -66,33 +66,33 @@
                                 <input type="date" name="end_date" class="form-control mr-2"
                                        value="{{ request.GET.end_date }}">
                                 <select name="status" class="form-control mr-2">
-                                    <option value="">All Status</option>
+                                    <option value="">{% translate "All statuses" %}</option>
                                     <option value="Blocked" {% if request.GET.status == 'Blocked' %}selected{% endif %}>
-                                        Blocked
+                                        {% translate "Blocked" %}
                                     </option>
                                     <option value="Detected"
-                                            {% if request.GET.status == 'Detected' %}selected{% endif %}>Detected
+                                            {% if request.GET.status == 'Detected' %}selected{% endif %}>{% translate "Detected" %}
                                     </option>
                                 </select>
-                                <button type="submit" class="btn btn-primary">Filter</button>
+                                <button type="submit" class="btn btn-primary">{% translate "Filter" %}</button>
                             </form>
 
-                            <p class="text-muted">Showing {{ filtered_count }} of {{ total_attacks }} total attacks.</p>
+                            <p class="text-muted">{% blocktranslate %}Showing {{ filtered_count }} of {{ total_attacks }} total attacks.{% endblocktranslate %}</p>
 
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped text-center">
                                     <thead class="thead-dark">
                                     <tr>
                                         <th>#</th>
-                                        <th>Time</th>
+                                        <th>{% translate "Time" %}</th>
                                         <th>IP</th>
-                                        <th>Country</th>
-                                        <th>Rule ID</th>
-                                        <th>Message</th>
-                                        <th>Host</th>
+                                        <th>{% translate "Country" %}</th>
+                                        <th>{% translate "Rule ID" %}</th>
+                                        <th>{% translate "Message" %}</th>
+                                        <th>{% translate "Host" %}</th>
                                         <th>URI</th>
                                         <th>Referer</th>
-                                        <th>Status</th>
+                                        <th>{% translate "Status" %}</th>
                                         <th>CRS Ver</th>
                                     </tr>
                                     </thead>

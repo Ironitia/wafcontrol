@@ -1,7 +1,7 @@
 {% extends 'dashboard/main/main.html' %}
-{% load static %}
+{% load i18n static %}
 {% block content %}
-    {% block title %}App Settings - Owasp Wafcontrol{% endblock %}
+    {% block title %}{% translate "Application settings" %} - OWASP WAFControl{% endblock %}
 
     <div id="content-page" class="content-page">
         <div class="container-fluid">
@@ -10,7 +10,7 @@
                     <div class="iq-card">
                         <div class="iq-card-header d-flex justify-content-between">
                             <div class="iq-header-title">
-                                <h4 class="card-title">Application Settings</h4>
+                                <h4 class="card-title">{% translate "Application settings" %}</h4>
                             </div>
                         </div>
                         <div class="iq-card-body">
@@ -35,7 +35,7 @@
                                         </div>
                                     {% endfor %}
                                 </div>
-                                <button type="submit" class="btn btn-success">Save Settings</button>
+                                <button type="submit" class="btn btn-success">{% translate "Save settings" %}</button>
                             </form>
 
                         </div>

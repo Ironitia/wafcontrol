@@ -1,6 +1,7 @@
-{% load static %}
+{% load i18n static %}
 <!doctype html>
-<html lang="en">
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
    <head>
       <!-- Required meta tags -->
       <meta charset="utf-8">
@@ -20,6 +21,18 @@
 
    </head>
    <body>
+
+      <form action="{% url 'set_language' %}" method="post"
+            class="position-fixed" style="top: 1rem; right: 1rem; z-index: 1050;">
+         {% csrf_token %}
+         <input name="next" type="hidden" value="{{ request.get_full_path }}">
+         <label for="auth-language" class="sr-only">{% translate "Language" %}</label>
+         <select id="auth-language" name="language" class="custom-select custom-select-sm"
+                 onchange="this.form.submit()" aria-label="{% translate 'Language' %}">
+            <option value="en"{% if LANGUAGE_CODE == 'en' %} selected{% endif %}>EN</option>
+            <option value="fr"{% if LANGUAGE_CODE == 'fr' %} selected{% endif %}>FR</option>
+         </select>
+      </form>
 
 {% block content %}{% endblock %}
       <!-- Optional JavaScript -->

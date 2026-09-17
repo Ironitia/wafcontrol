@@ -1,7 +1,7 @@
 {% extends 'dashboard/main/main.html' %}
-{% load static %}
+{% load i18n static %}
 {% block content %}
-    {% block title %}Top Attackers - Owasp Wafcontrol{% endblock %}
+    {% block title %}{% translate "Top attackers" %} - OWASP WAFControl{% endblock %}
 
     <div id="content-page" class="content-page">
         <div class="container-fluid">
@@ -10,8 +10,8 @@
                     <div class="iq-card">
                         <div class="iq-card-header d-flex justify-content-between">
                             <div class="iq-header-title">
-                                <h4 class="card-title">Top Attackers</h4>
-                                <small class="text-muted">This list updates automatically every 1 minute</small>
+                                <h4 class="card-title">{% translate "Top attackers" %}</h4>
+                                <small class="text-muted">{% translate "This list updates automatically every minute." %}</small>
 
                             </div>
                         </div>
@@ -19,9 +19,9 @@
                             <form method="get" class="form-inline mb-3">
                                 <input type="text" name="ip" placeholder="IP" class="form-control mr-2"
                                        value="{{ request.GET.ip }}">
-                                <input type="text" name="country" placeholder="Country" class="form-control mr-2"
+                                <input type="text" name="country" placeholder="{% translate 'Country' %}" class="form-control mr-2"
                                        value="{{ request.GET.country }}">
-                                <button type="submit" class="btn btn-primary">Filter</button>
+                                <button type="submit" class="btn btn-primary">{% translate "Filter" %}</button>
                             </form>
 
                             <div class="table-responsive">
@@ -30,8 +30,8 @@
                                     <tr>
                                         <th>#</th>
                                         <th>IP</th>
-                                        <th>Country</th>
-                                        <th>Total Attacks</th>
+                                        <th>{% translate "Country" %}</th>
+                                        <th>{% translate "Total attacks" %}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -53,7 +53,7 @@
                                         </tr>
                                     {% empty %}
                                         <tr>
-                                            <td colspan="4" class="text-muted text-center">No attackers found.</td>
+                                            <td colspan="4" class="text-muted text-center">{% translate "No attackers found." %}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
@@ -66,10 +66,10 @@
                                         {% if page_obj.has_previous %}
                                             <li class="page-item">
                                                 <a class="page-link"
-                                                   href="?page={{ page_obj.previous_page_number }}&{{ request.GET.urlencode|cut:'page=' }}">Previous</a>
+                                                   href="?page={{ page_obj.previous_page_number }}&{{ request.GET.urlencode|cut:'page=' }}">{% translate "Previous" %}</a>
                                             </li>
                                         {% else %}
-                                            <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                                            <li class="page-item disabled"><span class="page-link">{% translate "Previous" %}</span></li>
                                         {% endif %}
 
                                         {% for num in page_obj.paginator.page_range %}
@@ -88,10 +88,10 @@
                                         {% if page_obj.has_next %}
                                             <li class="page-item">
                                                 <a class="page-link"
-                                                   href="?page={{ page_obj.next_page_number }}&{{ request.GET.urlencode|cut:'page=' }}">Next</a>
+                                                   href="?page={{ page_obj.next_page_number }}&{{ request.GET.urlencode|cut:'page=' }}">{% translate "Next" %}</a>
                                             </li>
                                         {% else %}
-                                            <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                            <li class="page-item disabled"><span class="page-link">{% translate "Next" %}</span></li>
                                         {% endif %}
                                     </ul>
                                 </nav>

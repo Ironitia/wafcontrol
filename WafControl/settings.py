@@ -57,6 +57,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -129,7 +130,18 @@ PASSWORD_HASHERS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "en"
+
+LANGUAGES = [
+    ("en", "English"),
+    ("fr", "Français"),
+]
+
+LOCALE_PATHS = [BASE_DIR / "locale"]
+
+LANGUAGE_COOKIE_NAME = "wafcontrol_language"
+LANGUAGE_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", default=True)
+LANGUAGE_COOKIE_SAMESITE = "Lax"
 
 TIME_ZONE = "UTC"
 

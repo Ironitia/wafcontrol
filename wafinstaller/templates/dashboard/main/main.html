@@ -1,6 +1,7 @@
-{% load static %}
+{% load i18n static %}
 <!doctype html>
-<html lang="en">
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -52,7 +53,7 @@
 
                     <li class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
                         <a href="{% url 'wafinstaller:dashboard' %}" class="iq-waves-effect">
-                            <i class="las la-home iq-arrow-left"></i><span>Dashboard</span>
+                            <i class="las la-home iq-arrow-left"></i><span>{% translate "Dashboard" %}</span>
                         </a>
                     </li>
 
@@ -61,7 +62,7 @@
                            aria-expanded="{% if request.resolver_match.url_name in 'waf_attacks critical_attacks top-attacker' %}true{% else %}false{% endif %}">
                             <span class="ripple rippleEffect"></span>
                             <i class="las la-shield-alt iq-arrow-left"></i>
-                            <span>Attack Control</span>
+                            <span>{% translate "Attack Control" %}</span>
                             <i class="ri-arrow-right-s-line iq-arrow-right"></i>
                         </a>
                         <ul id="attack"
@@ -70,19 +71,19 @@
 
                             <li class="{% if request.resolver_match.url_name == 'waf_attacks' %}active{% endif %}">
                                 <a href="{% url 'wafinstaller:waf_attacks' %}">
-                                    <i class="las la-shield-alt"></i> All Attack
+                                    <i class="las la-shield-alt"></i> {% translate "All attacks" %}
                                 </a>
                             </li>
 
                             <li class="{% if request.resolver_match.url_name == 'critical_attacks' %}active{% endif %}">
                                 <a href="{% url 'wafinstaller:critical_attacks' %}">
-                                    <i class="las la-exclamation-triangle"></i> Critical Attack
+                                    <i class="las la-exclamation-triangle"></i> {% translate "Critical attacks" %}
                                 </a>
                             </li>
 
                             <li class="{% if request.resolver_match.url_name == 'top-attacker' %}active{% endif %}">
                                 <a href="{% url 'wafinstaller:top-attacker' %}">
-                                    <i class="las la-user-secret"></i> Top Attacker
+                                    <i class="las la-user-secret"></i> {% translate "Top attackers" %}
                                 </a>
                             </li>
                         </ul>
@@ -93,7 +94,7 @@
                            aria-expanded="{% if request.resolver_match.url_name in 'crs_rules categorized_files' %}true{% else %}false{% endif %}">
                             <span class="ripple rippleEffect"></span>
                             <i class="las la-cogs iq-arrow-left"></i>
-                            <span>Rule Management</span>
+                            <span>{% translate "Rule Management" %}</span>
                             <i class="ri-arrow-right-s-line iq-arrow-right"></i>
                         </a>
                         <ul id="rule-management"
@@ -102,13 +103,13 @@
 
                             <li class="{% if request.resolver_match.url_name == 'crs_rules' %}active{% endif %}">
                                 <a href="{% url 'wafinstaller:crs_rules' %}">
-                                    <i class="las la-sliders-h"></i> Rules
+                                    <i class="las la-sliders-h"></i> {% translate "Rules" %}
                                 </a>
                             </li>
 
                             <li class="{% if request.resolver_match.url_name == 'categorized_files' %}active{% endif %}">
                                 <a href="{% url 'wafinstaller:categorized_files' %}">
-                                    <i class="las la-eye"></i> Rules Viewer
+                                    <i class="las la-eye"></i> {% translate "Rules viewer" %}
                                 </a>
                             </li>
                         </ul>
@@ -121,7 +122,7 @@
                            aria-expanded="{% if request.resolver_match.url_name in 'crs_version crs_settings custom_rules' %}true{% else %}false{% endif %}">
                             <span class="ripple rippleEffect"></span>
                             <i class="las la-toolbox iq-arrow-left"></i>
-                            <span>CRS Control</span>
+                            <span>{% translate "CRS Control" %}</span>
                             <i class="ri-arrow-right-s-line iq-arrow-right"></i>
                         </a>
                         <ul id="crs-control"
@@ -130,19 +131,19 @@
 
                             <li class="{% if request.resolver_match.url_name == 'crs_version' %}active{% endif %}">
                                 <a href="{% url 'wafinstaller:crs_version' %}">
-                                    <i class="las la-code-branch"></i> Version Switcher
+                                    <i class="las la-code-branch"></i> {% translate "Version switcher" %}
                                 </a>
                             </li>
 
                             <li class="{% if request.resolver_match.url_name == 'crs_settings' %}active{% endif %}">
                                 <a href="{% url 'wafinstaller:crs_settings' %}">
-                                    <i class="las la-sliders-h"></i> CRS Setting
+                                    <i class="las la-sliders-h"></i> {% translate "CRS settings" %}
                                 </a>
                             </li>
 
                             <li class="{% if request.resolver_match.url_name == 'custom_rules' %}active{% endif %}">
                                 <a href="{% url 'wafinstaller:custom_rules' %}">
-                                    <i class="las la-code"></i> Custom Rules
+                                    <i class="las la-code"></i> {% translate "Custom rules" %}
                                 </a>
                             </li>
                         </ul>
@@ -152,7 +153,7 @@
                     <!-- Managed policies -->
                     <li class="{% if request.resolver_match.url_name == 'policy_management' %}active{% endif %}">
                         <a href="{% url 'wafinstaller:policy_management' %}" class="iq-waves-effect">
-                            <i class="las la-list-alt iq-arrow-left"></i><span>Managed Policies</span>
+                            <i class="las la-list-alt iq-arrow-left"></i><span>{% translate "Managed policies" %}</span>
                         </a>
                     </li>
 
@@ -160,14 +161,14 @@
                     <!-- Owc Setting -->
                     <li class="{% if request.resolver_match.url_name == 'app_settings' %}active{% endif %}">
                         <a href="{% url 'wafinstaller:app_settings' %}" class="iq-waves-effect">
-                            <i class="las la-tools iq-arrow-left"></i><span>Owc Setting</span>
+                            <i class="las la-tools iq-arrow-left"></i><span>{% translate "WAFControl settings" %}</span>
                         </a>
                     </li>
 
                     <!-- Admin Setting -->
                     <li class="{% if request.resolver_match.url_name == 'admin_profile' %}active{% endif %}">
                         <a href="{% url 'wafinstaller:admin_profile' %}" class="iq-waves-effect">
-                            <i class="las la-user-cog iq-arrow-left"></i><span>Admin Setting</span>
+                            <i class="las la-user-cog iq-arrow-left"></i><span>{% translate "Administrator settings" %}</span>
                         </a>
                     </li>
 
@@ -201,9 +202,9 @@
 
                 </div>
                 <div class="navbar-breadcrumb">
-                    <h4 class="mb-0 text-dark">Dashboard</h4>
-                    <p class="mb-0"><span class="text-danger">Hi {{ request.user.get_full_name }},</span> Great to see
-                        you again</p>
+                    <h4 class="mb-0 text-dark">{% translate "Dashboard" %}</h4>
+                    <p class="mb-0"><span class="text-danger">{% blocktranslate with name=request.user.get_full_name %}Hello {{ name }},{% endblocktranslate %}</span>
+                        {% translate "welcome back." %}</p>
                 </div>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -215,6 +216,18 @@
                     </ul>
                 </div>
                 <ul class="navbar-list">
+                    <li class="line-height mr-3">
+                        <form action="{% url 'set_language' %}" method="post" class="d-flex align-items-center">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                            <label for="dashboard-language" class="sr-only">{% translate "Language" %}</label>
+                            <select id="dashboard-language" name="language" class="custom-select custom-select-sm"
+                                    onchange="this.form.submit()" aria-label="{% translate 'Language' %}">
+                                <option value="en"{% if LANGUAGE_CODE == 'en' %} selected{% endif %}>EN</option>
+                                <option value="fr"{% if LANGUAGE_CODE == 'fr' %} selected{% endif %}>FR</option>
+                            </select>
+                        </form>
+                    </li>
                     <li class="line-height">
                         <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
                             <img src="{% static 'dashboard/images/user/user.png' %}" class="img-fluid rounded-circle"
@@ -225,8 +238,8 @@
                                 <div class="iq-card-body p-0 ">
                                     <div class="bg-primary p-3">
                                         <h5 class="mb-0 text-white line-height">
-                                            Hello {{ request.user.get_full_name }}</h5>
-                                        <span class="text-white font-size-12">Wellcome</span>
+                                            {% blocktranslate with name=request.user.get_full_name %}Hello {{ name }}{% endblocktranslate %}</h5>
+                                        <span class="text-white font-size-12">{% translate "Welcome" %}</span>
                                     </div>
                                     <a href="{% url 'wafinstaller:admin_profile' %}"
                                        class="iq-sub-card iq-bg-primary-hover">
@@ -235,8 +248,8 @@
                                                 <i class="ri-file-user-line"></i>
                                             </div>
                                             <div class="media-body ml-3">
-                                                <h6 class="mb-0 ">Admin Setting</h6>
-                                                <p class="mb-0 font-size-12">View personal profile details.</p>
+                                                <h6 class="mb-0 ">{% translate "Administrator settings" %}</h6>
+                                                <p class="mb-0 font-size-12">{% translate "View personal profile details." %}</p>
                                             </div>
                                         </div>
                                     </a>
@@ -247,8 +260,8 @@
                                                 <i class="ri-profile-line"></i>
                                             </div>
                                             <div class="media-body ml-3">
-                                                <h6 class="mb-0 ">OWC Setting</h6>
-                                                <p class="mb-0 font-size-12">Modify your personal details.</p>
+                                                <h6 class="mb-0 ">{% translate "WAFControl settings" %}</h6>
+                                                <p class="mb-0 font-size-12">{% translate "Modify your personal details." %}</p>
                                             </div>
                                         </div>
                                     </a>
@@ -259,7 +272,7 @@
                                             {% csrf_token %}
                                             <button type="submit" class="bg-primary iq-sign-btn border-0 text-white"
                                                     style="cursor:pointer;">
-                                                Sign out <i class="ri-login-box-line ml-2"></i>
+                                                {% translate "Sign out" %} <i class="ri-login-box-line ml-2"></i>
                                             </button>
                                         </form>
                                     </div>
@@ -287,7 +300,7 @@
                     </ul>
                 </div>
                 <div class="col-lg-6 text-right">
-                    Owasp Waf Control(v1.0.0). Built on top of the OWASP CRS project.thanks to the CRS community.
+                    {% translate "OWASP WAFControl (v1.0.0). Built on the OWASP CRS project. Thanks to the CRS community." %}
                 </div>
             </div>
         </div>
