@@ -18,7 +18,7 @@ class StyledModelForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             css_class = (
-                "form-check-input"
+                "form-check-input position-static ml-2 align-middle"
                 if isinstance(field.widget, forms.CheckboxInput)
                 else "form-control"
             )
