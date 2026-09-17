@@ -55,7 +55,7 @@ class WebAuthnProfileTests(TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "YubiKey / Security Key")
+        self.assertContains(response, "YubiKey / security key")
         self.assertContains(response, "Add security key")
 
     @patch("wafinstaller.webauthn_views.registration_options")
