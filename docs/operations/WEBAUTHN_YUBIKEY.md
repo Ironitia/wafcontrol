@@ -26,14 +26,17 @@ an independent fallback when enabled.
 
 ## Required production configuration
 
-For the Ironitia dashboard on `https://ironitia.com:7000`:
+For a dashboard served on the example origin `https://waf.example.com:7000`:
 
 ```dotenv
-WEBAUTHN_RP_ID=ironitia.com
+WEBAUTHN_RP_ID=waf.example.com
 WEBAUTHN_RP_NAME="OWASP WAFControl"
-WEBAUTHN_ALLOWED_ORIGINS=https://ironitia.com:7000
+WEBAUTHN_ALLOWED_ORIGINS=https://waf.example.com:7000
 WEBAUTHN_CHALLENGE_TTL_SECONDS=300
 ```
+
+Replace the example host and origin with the deployment's public DNS name and
+exact HTTPS origin.
 
 The RP ID contains no scheme or port. Every allowed origin contains the scheme,
 host and port, with no trailing slash. Do not add wildcard origins.
@@ -83,7 +86,8 @@ alter RP/origin checks to recover an account.
 After identity verification, list only non-secret metadata:
 
 ```bash
-/opt/WafControl/venv/bin/python manage.py shell -c \
+cd /path/to/wafcontrol
+./venv/bin/python manage.py shell -c \
   'from wafinstaller.models import WebAuthnCredential; print(list(WebAuthnCredential.objects.values("id", "user__username", "name", "created_at", "last_used_at")))'
 ```
 
