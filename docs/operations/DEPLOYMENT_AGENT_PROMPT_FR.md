@@ -77,9 +77,8 @@ revu, puis enregistre le hash complet retenu.
    - utilise `pwd`, `rg --files`, `git remote -v` et `git status` ;
    - cherche d’abord un répertoire `wafcontrol-fork` dans l’espace de travail
      fourni ;
-   - le chemin de référence historique est
-     `/home/xave/W3TEL Dropbox/Xavier Lemaire/www_ironitia_com/wafcontrol-fork`,
-     mais ne suppose pas qu’il existe sur un autre poste.
+   - ne suppose aucun chemin local historique ; utilise uniquement l’espace de
+     travail fourni.
 2. Vérifie que le remote correspond à
    `Ironitia/wafcontrol.git`, et non au dépôt upstream OWASP.
 3. Si aucun clone n’existe, clone notre fork dans un nouveau répertoire propre.
@@ -90,11 +89,8 @@ revu, puis enregistre le hash complet retenu.
    - `README.md` ;
    - `docs/operations/DEPLOYMENT.md` ;
    - `docs/operations/AGENT_HANDOFF.md` ;
-   - `docs/operations/WEBAUTHN_YUBIKEY.md` ;
-   - `docs/operations/PRODUCTION_INVENTORY_IRONITIA.md`.
-7. L’inventaire Ironitia est uniquement une référence technique. N’en copie
-   aucune valeur propre au site sauf si elle apparaît explicitement dans les
-   paramètres du nouveau site.
+   - `docs/operations/WEBAUTHN_YUBIKEY.md`.
+7. N’utilise aucune valeur provenant d’un inventaire privé ou d’un autre site.
 
 Si un document ou un script référencé manque au commit retenu, arrête-toi et
 signale précisément le fichier absent.

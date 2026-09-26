@@ -1,8 +1,8 @@
 # Agent handoff checklist
 
 Use this checklist when another agent or operator deploys this stack on a new
-site. The controlling document is [DEPLOYMENT.md](DEPLOYMENT.md). Do not infer
-missing site values from the Ironitia inventory.
+site. The controlling document is [DEPLOYMENT.md](DEPLOYMENT.md). Never infer
+missing site values from a private production inventory.
 
 ## Inputs the requester must supply
 

@@ -532,7 +532,6 @@ allow-list, audit and recovery safeguards.
 | `deploy/rsyslog-wafcontrol-mapattack.conf.template` | generic syslog forwarding |
 | `deploy/modsecurity/site-before-crs.conf.example` | site exclusion starting point |
 | `docs/operations/AGENT_HANDOFF.md` | deterministic operator checklist |
-| `docs/operations/PRODUCTION_INVENTORY_IRONITIA.md` | sanitised reference inventory |
 
 The templates deliberately contain no private key, password, final legal data
 or application-specific exclusion.

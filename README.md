@@ -239,7 +239,7 @@ WAFControl also supports YubiKey and cross-platform FIDO2/WebAuthn security keys
 
 For a ready-to-copy French prompt that hands a new-site deployment to another agent, use [DEPLOYMENT_AGENT_PROMPT_FR.md](docs/operations/DEPLOYMENT_AGENT_PROMPT_FR.md).
 
-For a reproducible Nginx, ModSecurity, CRS, PostgreSQL, Celery and MapAttack deployment, use the standalone [deployment runbook](docs/operations/DEPLOYMENT.md). Operators and automation agents should also follow the [agent handoff checklist](docs/operations/AGENT_HANDOFF.md). The [sanitised Ironitia inventory](docs/operations/PRODUCTION_INVENTORY_IRONITIA.md) records the validated Nginx topology. The [ISPConfig 2023 inventory](docs/operations/PRODUCTION_INVENTORY_ISPCONFIG248.md) and [ISPConfig fleet inventory](docs/operations/PRODUCTION_INVENTORY_ISPCONFIG_FLEET.md) record the Apache deployments, alert routing and rollback controls.
+For a reproducible Nginx, ModSecurity, CRS, PostgreSQL, Celery and MapAttack deployment, use the standalone [deployment runbook](docs/operations/DEPLOYMENT.md). Operators and automation agents should also follow the [agent handoff checklist](docs/operations/AGENT_HANDOFF.md). Site inventories, addresses, exclusions and rendered production configuration are deliberately kept outside the public repository.
 
 
 Render a site-specific, secret-free configuration bundle with `scripts/render_deployment_config.sh`; do not copy Ironitia addresses or exclusions to another site.
@@ -256,7 +256,7 @@ message reduction for this action, and forwards over queued RFC3164/TCP. The
 message body is intentionally compatible with the common Snort alert shape:
 
 ~~~text
-[1:942100:1] MODSEC SQL Injection Attack Detected [Classification: Web Application SQL Injection] [Priority: 1] {TCP} 34.34.254.214:4575 -> 46.28.168.244:443
+[1:942100:1] MODSEC SQL Injection Attack Detected [Classification: Web Application SQL Injection] [Priority: 1] {TCP} 198.51.100.23:4575 -> 192.0.2.10:443
 ~~~
 
 Source and destination addresses and ports are extracted from ModSecurity audit

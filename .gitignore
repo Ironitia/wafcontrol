@@ -25,3 +25,13 @@ __pycache__/
 celerybeat-schedule
 celerybeat-schedule-shm
 celerybeat-schedule-wal
+
+# Private/site-specific deployment material (kept locally, never published)
+/docs/operations/PRODUCTION_INVENTORY_*.md
+/docs/operations/W3TEL_*.md
+/docs/operations/*_W3TEL*.md
+/docs/operations/private/
+/docs/operations/w3tel/
+
+# Rendered production configuration; publish the template only
+/deploy/rsyslog-wafcontrol-mapattack.conf

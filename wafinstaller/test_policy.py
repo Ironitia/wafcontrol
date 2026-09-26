@@ -840,9 +840,9 @@ class SyslogSecurityEventTests(SimpleTestCase):
             "severity": 3,
             "rule_tags": ["attack-sqli"],
             "protocol": "TCP",
-            "ip": "34.34.254.214",
+            "ip": "198.51.100.23",
             "source_port": 4575,
-            "destination_ip": "46.28.168.244",
+            "destination_ip": "192.0.2.10",
             "destination_port": 443,
         }
         values.update(overrides)
@@ -855,7 +855,7 @@ class SyslogSecurityEventTests(SimpleTestCase):
             message,
             "[1:942100:1] MODSEC SQL Injection Attack Detected via libinjection "
             "[Classification: Web Application SQL Injection] [Priority: 1] "
-            "{TCP} 34.34.254.214:4575 -> 46.28.168.244:443",
+            "{TCP} 198.51.100.23:4575 -> 192.0.2.10:443",
         )
 
     @patch("wafinstaller.security_events.os.path.exists", return_value=False)
@@ -903,7 +903,7 @@ class SyslogSecurityEventTests(SimpleTestCase):
     def test_extracts_complete_modsecurity_network_tuple(self):
         sections = {
             "A": [
-                "[22/Aug/2026:03:40:12 +0000] txid 34.34.254.214 4575 46.28.168.244 443"
+                "[22/Aug/2026:03:40:12 +0000] txid 198.51.100.23 4575 192.0.2.10 443"
             ]
         }
 
@@ -913,7 +913,7 @@ class SyslogSecurityEventTests(SimpleTestCase):
             metadata,
             {
                 "source_port": 4575,
-                "destination_ip": "46.28.168.244",
+                "destination_ip": "192.0.2.10",
                 "destination_port": 443,
                 "protocol": "TCP",
             },
@@ -923,7 +923,7 @@ class SyslogSecurityEventTests(SimpleTestCase):
 class SyslogAttackDeduplicationTests(TestCase):
     def test_same_signature_with_different_transaction_is_not_suppressed(self):
         common = {
-            "ip": "34.34.254.214",
+            "ip": "198.51.100.23",
             "uri": "/.env",
             "host": "ironitia.com",
             "rule_id": "930120",
